@@ -1,0 +1,234 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/static/images/logo.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Alertify -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    <!--  -->
+    <link rel="stylesheet" href="/static/styles/auth.css?r={{r}}">
+    <title id="title">House Party Clone - Login/Sign up</title>
+</head>
+<body style="align-items:center;justify-content: center;text-align:center;">
+    <br>
+    {%with messages = get_flashed_messages(with_categories=true)%}
+        {%if messages%}
+            {%for category, message in messages%}
+                {%if category == 'error'%}
+                    <script>alertify.error('{{message}}')</script>
+                {%else%}
+                    <script>alertify.success('{{message}}')</script>
+    {%endif%}{%endfor%}{%endif%}{%endwith%}
+
+
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="/sign-up" method="post" enctype="multipart/form-data">
+			<h1>Create Account</h1>
+		<br>
+			<input required type="text" name="name" placeholder="Username" />
+			<input required type="email" name="email" placeholder="Email" />
+			<input required type="password" name="pw" placeholder="Password" />
+            <label for="bd">Birthday</label>
+            <input id="bd" required type="date" name="birthday">
+			<button type="submit">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="/login" method="post">
+			<h1>Login</h1>
+			
+<br>
+			<input required value="{{name}}" name="name" type="username" placeholder="Username" />
+			<input required value="{{pw}}" name="pw" type="password" placeholder="Password" />
+			<a href="javascript:ForgotPassword()">Forgot your password?</a>
+			<button type="submit">Login</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Login</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend 😄! </h1>
+				<p>Enter your personal details and start having fun with your friends!</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>
+<script>
+
+    //let login = false;
+    //function switcher(){
+    //    login = !login
+    //    let switcher = document.getElementById("switcher")
+    //    let loginn = document.getElementById("login")
+    //    let signup = document.getElementById("signUp")
+    
+    //    if(!login){
+    //        switcher.innerText = "Sign Up?"
+    //        loginn.style = "display:unset"
+    //        signup.style = "display:none"
+    //        
+    //    }
+    //    else{
+    //        switcher.innerText = "Login?"
+    //        loginn.style = "display:none"
+    //        signup.style = "display:unset"
+    //    }
+    //}
+	var  signUpButton = document.getElementById('signUp');
+	var  signInButton = document.getElementById('signIn');
+	var  container = document.getElementById('container');
+
+    var fpEmail = null;
+	signUpButton.addEventListener('click', () => {
+		container.classList.add("right-panel-active");
+	});
+
+	signInButton.addEventListener('click', () => {
+		container.classList.remove("right-panel-active");
+	});
+
+
+    function ForgotPassword() {
+
+        $(".form-container.sign-up-container").html(`
+        <form onsubmit="return false;">
+			<h1>Forgot your password?</h1>
+		<br>
+			<input type="email" id="FP-email" name="email" placeholder="Email" />
+			<button type="submit" onclick="SendFP()">Continue</button>
+		</form>`)
+        
+        signUpButton.click()
+        $(".overlay-panel.overlay-left").html(`
+        <h1>How to reset your password?</h1>
+				<p>Enter your email, then we send you a code which you confirm afterwards.</p>
+				<button class="ghost" id="signIn" onclick="ResetDivsAfterFP()">Back</button>
+        `)
+    }
+    
+
+    function ResetDivsAfterFP() {
+        $(".form-container.sign-up-container").html(`
+        <form action="/sign-up" method="post" enctype="multipart/form-data">
+			<h1>Create Account</h1>
+            <br>
+			<input type="text" name="name" placeholder="Username" />
+			<input type="email" name="email" placeholder="Email" />
+			<input type="password" name="pw" placeholder="Password" />
+			<button type="submit">Sign Up</button>
+		</form>`)
+        $(".overlay-panel.overlay-left").html(`
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn">Login</button>
+        `)
+
+        
+        signInButton.click()
+        document.getElementById("signIn").addEventListener("click",() => {
+            container.classList.remove("right-panel-active");
+        })
+
+    }
+
+
+    function SendFP(){
+        let FP_div = $(".form-container.sign-up-container")
+        $(".form-container.sign-up-container h1,input,button").css("opacity",0.5)
+        $(".form-container.sign-up-container h1,input,button").css("pointer-events","none")
+      
+        let formData = new FormData();
+        formData.append("email",$("#FP-email").val());
+        fpEmail = $("#FP-email").val()
+        fetch("/forgot-password", {
+            method: "POST",
+            body: formData
+        }).then((res) => {
+            return res.text()
+        }).then((text) => {
+            if(text != ""){
+                alertify.error("No user found with that email.")
+            $(".form-container.sign-up-container h1,input,button").css("opacity",1)
+            $(".form-container.sign-up-container h1,input,button").css("pointer-events","all")
+
+                return;
+            }
+            console.log("FP sent successfully")
+              FP_div.html(`
+        <form onsubmit="return false;">
+			<h1>Confirm Code</h1>
+		<br>
+			<input type="number" id="FP-code" oninput="
+    if (this.value.length > 4) {
+        this.value = this.value.slice(0,4); 
+    } this.value = this.value.replaceAll('e')"placeholder="Code" />
+			<button type="submit" onclick="CheckCode()">Confirm</button>
+		</form>
+        `)
+        $(".form-container.sign-up-container h1,input,button").css("opacity", 1)
+        $(".form-container.sign-up-container h1,input,button").css("pointer-events", "all")
+        })
+
+    }
+
+
+    function CheckCode() {
+        let userCode = $("#FP-code").val()
+        fetch(`/check-fp-code/${fpEmail}/${userCode}`).then((res) => {
+            return res.text()
+        }).then((status) => {
+            if(status == "true"){
+                $(".form-container.sign-up-container").html(`
+        <form onsubmit="return false;">
+			<h1>Reset Password</h1>
+		<br>
+			<input type="password" id="FP-pw" placeholder="New Password" />
+			<button type="submit" onclick="ChangePassword()">Change</button>
+		</form>`)
+            }
+            else {
+                alertify.error("Incorrect code, check the email again.")
+            }
+        })
+
+    }
+
+
+    function ChangePassword() {
+        let newPassword = $("#FP-pw").val()
+        let formData = new FormData();
+        formData.append("newPassword", newPassword)
+        fetch("/change-password/" +fpEmail, {
+            method: "POST",
+            body: formData,
+        }).then((res) => {
+            return res.text();
+        }).then((status) => {
+            if(status == "success") {
+                window.location.href = "/flash=Password%20Changed!_url=EMPTY"
+            }
+            else{
+                alertify.error("Unable to change password.")
+            }
+        })
+
+    }
+</script>

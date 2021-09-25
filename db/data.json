@@ -1,0 +1,28 @@
+{
+    "kar1m": {
+        "birthday": "2007-04-25",
+        "email": "karimh151515@gmail.com",
+        "joined": "20/09/2021",
+        "name": "kar1m",
+        "notifications": [],
+        "pfp": "static/images/default.jpg",
+        "pw": "202cb962ac59075b964b07152d234b70",
+        "settings": {},
+        "friends":[],
+        "recived":[],
+        "sent":[]
+    },
+    "karim": {
+        "birthday": "FOR NOW BAS ASHAN 3ALA BAL MANTA TIGI",
+        "email": "karimkhalifa110@gmail.com",
+        "joined": "20/09/2021",
+        "name": "karim",
+        "notifications": [],
+        "pfp": "static/images/default.jpg",
+        "pw": "202cb962ac59075b964b07152d234b70",
+        "settings": {},
+        "friends":[],
+        "recived":[],
+        "sent":[]
+    }
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/index.css?r={{r}}">
+        <script src="/static/js/index.js?r={{r}}"></script>
+        <script src="https://kit.fontawesome.com/383a3bf828.js" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+        <div style="display:none;">
+            <h1>Flask & Twilio Video Conference</h1>
+            <form>
+                <label for="username">Name: </label>
+                <input type="text" name=”username” id="username">
+                <button id="join_leave">Join call</button>
+                <button id="share_screen" disabled>Share screen</button>
+                <button id="toggle_chat" disabled>Toggle chat</button>
+            </form>
+            <p id="count">Disconnected.</p>
+            <div id="root">
+                <div id="container" class="container">
+                    <div id="local" class="participant"><div></div><div class="label">Me</div></div>
+                </div>
+                <div id="chat">
+                    <div id="chat-scroll">
+                        <div id="chat-content">
+                        </div>
+                    </div>
+                    <input id="chat-input" type="text">
+                </div>
+            </div>
+        </div>
+
+
+        <div id="friends-list">
+            <div id="search-bar">
+                <input type="search" oninput="search(this.value)" placeholder="Search...">
+
+            </div>
+
+
+            <div id="search-res">
+               
+            </div>
+            <!-- {%for friend in friends%}
+
+                <div class="friend">
+                    
+                    <h3>{{friend}}</h3>
+                    
+                </div>
+
+            {%endfor%} -->
+            
+            
+
+        </div>
+        <script src="https://media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+        <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script>
+        <script src="{{ url_for('static', filename='app.js') }}"></script>
+    </body>
+</html>
