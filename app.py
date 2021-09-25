@@ -115,11 +115,24 @@ def search():
         t = request.form['text']
         tl = t.lower()
         res = []
+        resData = {}
         for user in data.keys():
             userl = user.lower()
             if userl in tl or tl.endswith(userl) or userl.endswith(tl) or tl.startswith(userl) or userl.startswith(tl) or tl == userl:
-                res.append(user)
-    return jsonify({"res":res})
+                if userl != name.lower():
+                    res.append(user)
+
+                    if user in data[name]['sent']: # to check if name sent a friend request to user
+                        state = "me_sent"
+                    elif user in data[name]['recived']: # to check if user sent friend request name
+                        state = "user_sent"
+                    elif user in data[name]['friends']: # to check if user and name are friends
+                        state = "friends"
+                    else:
+                        state = "normal" # not friends (else)
+                    resData[user] = state
+
+    return jsonify({"res":res, "resData":resData})
 
 @app.route('/sign-up', methods=['POST', "GET"])
 # @limiter.limit("3/day")
@@ -315,6 +328,28 @@ def accept_req():
 
     return ""
 
+
+@app.route('/reject', methods=['POST'])
+def rejectReq():
+    user = request.form['user']
+    name = request.cookies.get("name")
+    pw = request.cookies.get("pw")
+    if auth(name, pw):
+        friends = data[user]['friends']
+        if name in friends:
+            return ""
+        elif name in data[user]["sent"]:
+            data[user]["sent"].remove(name)
+            data[name]["recived"].remove(user)
+            saveJson()
+            return ""
+        elif name in data[user]['recived']:
+            return ""
+        else:
+            return ""
+
+    
+    return ""
 
 @app.route('/unfriend', methods=['POST'])
 def unfriend():

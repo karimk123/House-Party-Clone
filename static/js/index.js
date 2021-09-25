@@ -1,26 +1,151 @@
-function search(text){
-    let formData = new FormData
-    formData.append("text", text)
-    fetch("/search", {method:"POST", body:formData}).then((res) => {
-        return res.json()
-    }).then((data) => {
-        data = data['res'] // => [user1, user2, user3, ...]
-    document.getElementById("search-res").innerHTML = ""
-	for(let i = 0; i < data.length; i++){
-		let currUser = data[i]
-        let div = document.createElement("div")
-        div.className = "user"
-        let h3 = document.createElement("h3")
-        h3.innerText = currUser
-        let img = document.createElement("img")
-        img.src = "/static/images/default.jpg"
-        img.draggable = false
-        img.className = "pfp"
-        div.appendChild(h3)
-        div.appendChild(img)
-        document.getElementById("search-res").appendChild(div)
-        
+function addFriend(name){
 
-	}
+    let formData = new FormData
+    formData.append("user", name)
+    fetch("/send-req", {method: "POST",body:formData}).then((res) => {
+        search(document.getElementById("search-input").value)
     })
+
+}
+
+function removeSentReq(name){
+
+    let formData = new FormData
+    formData.append("user", name)
+    fetch("/rm-req", {method: "POST",body:formData}).then((res) => {
+        search(document.getElementById("search-input").value)
+    })
+
+}
+function acceptReq(name){
+
+    let formData = new FormData
+    formData.append("user", name)
+    fetch("/accept-req", {method: "POST",body:formData}).then((res) => {
+        search(document.getElementById("search-input").value)
+    })
+
+}
+function unfriend(name){
+
+    let formData = new FormData
+    formData.append("user", name)
+    fetch("/unfriend", {method: "POST",body:formData}).then((res) => {
+        search(document.getElementById("search-input").value)
+    })
+
+}
+function reject(name){
+
+    let formData = new FormData
+    formData.append("user", name)
+    fetch("/reject", {method: "POST",body:formData}).then((res) => {
+        search(document.getElementById("search-input").value)
+    })
+
+}
+
+function search(text){
+    if(text == ""){document.getElementById("search-res").innerHTML = ""}
+    if(text.replace(/\s/g, '').length != 0){
+
+        let formData = new FormData
+        formData.append("text", text)
+        fetch("/search", {method:"POST", body:formData}).then((res) => {
+            return res.json()
+        }).then((data) => {
+            let resData = data['resData'] // => {"user1": "normal"}
+            data = data['res'] // => [user1, user2, user3, ...]
+            document.getElementById("search-res").innerHTML = ""
+            for(let i = 0; i < data.length; i++){
+                var currUser = data[i]
+                let div = document.createElement("div")
+                div.className = "user"
+                console.log(resData[currUser])
+                /*
+
+                ana => user : remove request (<i class="fas fa-minus-square"></i>)
+                user => ana : accept request (<i class="fas fa-user-check"></i>)
+                friends : call (<i class="fas fa-phone-alt"></i>), remove friend (<i class="fas fa-user-minus"></i>)
+                else: add friend (<i class="fas fa-user-plus"></i>) 
+                    
+                */
+                let btn = document.createElement("span")
+                // TODO: btns
+                if(resData[currUser] == "me_sent"){ // i sent him
+                    btn.className = "fas fa-minus-square userBtns"
+                    btn.onclick = () => {
+                        removeSentReq(currUser)
+                    }
+                    btn.id = "rm-req-btn"
+                }
+                else if(resData[currUser] == "user_sent"){ // i sent him
+                    btn.className = "fas fa-user-check userBtns"
+                    btn.onclick = () => {
+                        acceptReq(currUser)
+                    }
+                    btn.id = "accept-btn"
+                    var rejectBtn = document.createElement("span")
+                    rejectBtn.onclick = () => {
+                        reject(currUser)
+                    }
+                    rejectBtn.id = "reject-btn"
+                    rejectBtn.className = "fas fa-user-minus userBtns"
+
+                    div.style.width = "300px"
+
+                }
+                else if(resData[currUser] == "friends"){ // i sent him
+                    btn.className = "fas fa-user-minus userBtns"
+                    btn.onclick = () => {
+                        unfriend(currUser)
+                    }
+                    btn.id = "rm-friend-btn"
+
+                    var callBtn = document.createElement("span")
+                    callBtn.onclick = () => {
+                        // later
+                    }
+                    callBtn.id = "call-btn"
+                    callBtn.className = "fas fa-phone-alt userBtns"
+
+                }else{
+                    btn.className = "fas fa-user-plus userBtns"
+                    btn.onclick = () => {
+                        addFriend(currUser)
+                    }
+                    btn.id = "add-friend-btn"
+                }
+                
+
+                let span = document.createElement("span")
+                span.innerText = currUser
+                let img = document.createElement("img")
+                img.src = "/static/images/default.jpg"
+                img.draggable = false
+                img.className = "pfp"
+                div.appendChild(img)
+                div.appendChild(span)
+                if(resData[currUser] == "friends"){
+                    div.appendChild(callBtn)
+                }
+                if(resData[currUser] == "user_sent"){
+                    div.appendChild(rejectBtn)
+                }
+                div.appendChild(btn)
+                document.getElementById("search-res").appendChild(div)
+                document.getElementById("search-res").appendChild(document.createElement("br"))
+                
+    
+            }
+            if(data.length == 0){
+                document.getElementById("search-res").innerHTML = "<h3>No results found!</h3>"
+            }
+        
+    
+        })
+    }
+
+    
+
 }
