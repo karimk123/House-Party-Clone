@@ -9,6 +9,5 @@ doing right now {
 
 	friends{
 		fetching ✅;
-		kaka
 	}
 }
