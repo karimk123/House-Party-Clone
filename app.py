@@ -373,6 +373,13 @@ def unfriend():
     
     return ""
 
+@app.route('/get-reqs')
+def get_friend_requests():
+    name = request.cookies.get("name")
+    pw = request.cookies.get("pw")
+    if auth(name, pw):
+        return jsonify({"res":data[name]['recived']})
+    return "False"
 
 
 @app.route('/flash=<flashMessage>_url=<url>')
