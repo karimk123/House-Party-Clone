@@ -4,7 +4,7 @@
         <link rel="stylesheet" type="text/css" href="/static/index.css?r={{r}}">
         <script src="/static/js/index.js?r={{r}}"></script>
         <script src="https://kit.fontawesome.com/383a3bf828.js" crossorigin="anonymous"></script>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
         <div style="display:none;">
@@ -33,26 +33,43 @@
 
 
         <div id="friends-list">
-            <!-- <i class="fas fa-bell"></i> -->
             <div id="search-bar">
-                <input id='search-input' type="search" oninput="search(this.value)" placeholder="Search...">
 
+                <input autocomplete="off" id='search-input' type="search" oninput="search(this.value)" placeholder="Search...">
+                <i class="fas fa-bell" onclick="Notis()"></i>
+                
             </div>
 
+            <div id="notis" style="display: none;">
+
+                 {%for user in data[name]['recived']%}
+                    <div class="user">
+                        <img draggable="false" class="pfp" src="/{{data[user]['pfp']}}">
+                        <span>{{user}}</span>
+                        <span onclick="acceptReq('{{user}}');reRender()" id="accept-btn" class="fas fa-user-check userBtns"></span>
+                        <span onclick="reject('{{user}}');reRender()" class="fas fa-user-minus userBtns" id="reject-btn"></span>
+                    </div>
+                 {%endfor%}
+                <hr>
+            </div>
 
             <div id="search-res">
                
             </div>
-            <!-- {%for friend in friends%}
+            <hr>
+            <div id='friends-div'>
+                <h4 style="text-align:center;">Friends</h4>
+                {%for friend in friends%}
 
-                <div class="friend">
-                    
-                    <h3>{{friend}}</h3>
-                    
-                </div>
+                    <div class="user">
+                        <img draggable="false" class="pfp" src="/{{data[friend]['pfp']}}">
+                        <span>{{friend}}</span>
+                        <span id="call-btn" class="fas fa-phone-alt userBtns"></span>
+                        <span onclick="unfriend('{{friend}}');window.location.href='/'" class="fas fa-user-minus userBtns" id="rm-friend-btn"></span>
+                    </div>
 
-            {%endfor%} -->
-            
+                {%endfor%}
+            </div>
             
 
         </div>

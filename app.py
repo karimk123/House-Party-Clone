@@ -99,7 +99,9 @@ def index():
                 r=random.randint(0,234234),
                 friends=data[name]['friends'],
                 sent=data[name]['sent'],
-                recived=data[name]['recived']
+                recived=data[name]['recived'],
+                data=data,
+                name=name
             )
         else:
             return render_template("auth.html", r=random.randint(0, 12132))
@@ -142,8 +144,8 @@ def sign_up():
         name = request.form['name']
         pw = request.form['pw']
         email = request.form['email']
-        if len(name) > 20 or len(pw) > 50:
-            flash("Username max length should be 20 and password max length is 50!", category="error")
+        if len(name) > 9 or len(pw) > 50:
+            flash("Username max length should be 8 and password max length is 50!", category="error")
             return redirect("/")
         birthday = request.form['birthday']
         if name not in data.keys():
@@ -373,13 +375,13 @@ def unfriend():
     
     return ""
 
-@app.route('/get-reqs')
-def get_friend_requests():
-    name = request.cookies.get("name")
-    pw = request.cookies.get("pw")
-    if auth(name, pw):
-        return jsonify({"res":data[name]['recived']})
-    return "False"
+# @app.route('/get-reqs')
+# def get_friend_requests():
+#     name = request.cookies.get("name")
+#     pw = request.cookies.get("pw")
+#     if auth(name, pw):
+#         return jsonify({"res":data[name]['recived']})
+#     return "False"
 
 
 @app.route('/flash=<flashMessage>_url=<url>')

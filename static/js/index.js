@@ -71,7 +71,6 @@ function search(text){
                     
                 */
                 let btn = document.createElement("span")
-                // TODO: btns
                 if(resData[currUser] == "me_sent"){ // i sent him
                     btn.className = "fas fa-minus-square userBtns"
                     btn.onclick = () => {
@@ -148,4 +147,12 @@ function search(text){
 
     
 
+}
+
+
+function Notis (){ 
+    $("#notis").toggle()
+}
+function reRender(){
+    window.location.href = "/"
 }

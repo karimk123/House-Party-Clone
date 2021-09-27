@@ -184,6 +184,7 @@ button:focus {
     font-weight: 500;
     border-radius: 9px;
     outline: none;
+    width: 77%;
 }
 
 #friends-list {
@@ -200,7 +201,7 @@ button:focus {
     border-radius:20px;
     cursor:pointer;
     font-family: 'Poppins', sans-serif;
-    width: 287px;
+    width: 340px;
 }
 .user .pfp{
     height: 39px
@@ -208,7 +209,7 @@ button:focus {
 
 
 .user span {
-    padding-left: 23px;
+    padding-left: 8px;
     font-size: 29px;
     position: absolute;
     margin-top: 4px;
@@ -249,4 +250,29 @@ button:focus {
     left: 50% !important;
     top:-5px;
     margin-right: 10px;
+}
+
+
+#friends-div {
+    width: fit-content;
+}
+#friends-div .user{
+    width: 340px !important;
+}
+
+
+.fa-bell {
+    border-radius: 13px;
+    border: 1px solid #FF4B2B;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 10px 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left:2px;
 }
