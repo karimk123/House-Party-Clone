@@ -2,9 +2,7 @@
     "kar1m": {
         "birthday": "2007-04-25",
         "email": "karimh151515@gmail.com",
-        "friends": [
-            "karim"
-        ],
+        "friends": [],
         "joined": "20/09/2021",
         "name": "kar1m",
         "notifications": [],
@@ -17,9 +15,7 @@
     "karim": {
         "birthday": "2007-06-14",
         "email": "karimkhalifa110@gmail.com",
-        "friends": [
-            "kar1m"
-        ],
+        "friends": [],
         "joined": "20/09/2021",
         "name": "karim",
         "notifications": [],

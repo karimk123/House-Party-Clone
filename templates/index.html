@@ -65,7 +65,7 @@
                         <img draggable="false" class="pfp" src="/{{data[friend]['pfp']}}">
                         <span>{{friend}}</span>
                         <span id="call-btn" class="fas fa-phone-alt userBtns"></span>
-                        <span onclick="unfriend('{{friend}}');window.location.href='/'" class="fas fa-user-minus userBtns" id="rm-friend-btn"></span>
+                        <span onclick="unfriend('{{friend}}');reRender('{{friend}}')" class="fas fa-user-minus userBtns" id="rm-friend-btn"></span>
                     </div>
 
                 {%endfor%}

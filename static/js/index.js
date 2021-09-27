@@ -6,6 +6,7 @@ function addFriend(name){
         search(document.getElementById("search-input").value)
     })
 
+
 }
 
 function removeSentReq(name){
@@ -18,12 +19,42 @@ function removeSentReq(name){
 
 }
 function acceptReq(name){
-
+    let currUser = name
     let formData = new FormData
     formData.append("user", name)
     fetch("/accept-req", {method: "POST",body:formData}).then((res) => {
         search(document.getElementById("search-input").value)
     })
+
+    let div = document.createElement("div")
+    div.className = "user"
+    let btn = document.createElement("span")
+
+    btn.className = "fas fa-user-minus userBtns"
+    btn.onclick = () => {
+        unfriend(currUser);
+        reRender(currUser)
+    }
+    btn.id = "rm-friend-btn"
+
+    var callBtn = document.createElement("span")
+    callBtn.onclick = () => {
+        // later
+    }
+    callBtn.id = "call-btn"
+    callBtn.className = "fas fa-phone-alt userBtns"
+    let span = document.createElement("span")
+    span.innerText = currUser
+    let img = document.createElement("img")
+    img.src = "/static/images/default.jpg"
+    img.draggable = false
+    img.className = "pfp"
+    div.appendChild(img)
+    div.appendChild(span)
+    div.appendChild(callBtn)
+    div.appendChild(btn)
+    document.getElementById("friends-div").appendChild(div)
+
 
 }
 function unfriend(name){
@@ -153,6 +184,16 @@ function search(text){
 function Notis (){ 
     $("#notis").toggle()
 }
-function reRender(){
-    window.location.href = "/"
+function reRender(name){
+    //document.getElementsByClassName("user")[0].getElementsByTagName("span")[0].innerText
+    var div = ""
+    for(let i = 0; document.getElementsByClassName("user").length>i;i++){
+
+        if(document.getElementsByClassName("user")[i].getElementsByTagName("span")[0].innerText == name){
+            div = document.getElementsByClassName("user")[i]
+        }
+    }
+    console.log(div)
+    var element = div
+	element.parentNode.removeChild(element);
 }
