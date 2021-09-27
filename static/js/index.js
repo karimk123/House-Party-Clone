@@ -181,9 +181,13 @@ function search(text){
 }
 
 
+var notiToggle = false;
 function Notis (){ 
-    $("#notis").toggle()
+    notiToggle = !notiToggle;
+    $("#notis").slideToggle()
+    $(".fa-bell").css("text-shadow", notiToggle ? "1px 3px 13px #000000ba": "none" )
 }
+
 function reRender(name){
     //document.getElementsByClassName("user")[0].getElementsByTagName("span")[0].innerText
     var div = ""

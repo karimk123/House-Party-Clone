@@ -254,7 +254,7 @@ button:focus {
 
 
 #friends-div {
-    width: fit-content;
+    /* width: fit-content; THIS MIGHT MAKE A BUG IM NOT SURE*/
 }
 #friends-div .user{
     width: 340px !important;
@@ -274,5 +274,13 @@ button:focus {
     transition: transform 80ms ease-in;
     cursor: pointer;
     transition: 0.3s;
-    margin-left:2px;
+    margin-left:13px;
+}
+.fa-bell:hover {
+    opacity:0.7;
+}
+
+#notis h3 {
+    text-align: center;
+    /* text-shadow: -1px 1px 18px #0000008c; */
 }

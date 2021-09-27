@@ -41,7 +41,8 @@
             </div>
 
             <div id="notis" style="display: none;">
-
+                <hr>
+                    <h3>Friend Requests</h3>
                  {%for user in data[name]['recived']%}
                     <div class="user">
                         <img draggable="false" class="pfp" src="/{{data[user]['pfp']}}">
@@ -50,7 +51,10 @@
                         <span onclick="reject('{{user}}');reRender()" class="fas fa-user-minus userBtns" id="reject-btn"></span>
                     </div>
                  {%endfor%}
-                <hr>
+                 {%if not data[name]["recived"]%}
+                    <h4>No requests.</h4>
+                 {%endif%}
+                                 <hr>
             </div>
 
             <div id="search-res">
@@ -58,7 +62,7 @@
             </div>
             <hr>
             <div id='friends-div'>
-                <h4 style="text-align:center;">Friends</h4>
+                <h4 style="">Friends</h4>
                 {%for friend in friends%}
 
                     <div class="user">
@@ -69,6 +73,10 @@
                     </div>
 
                 {%endfor%}
+                {%if not friends%}
+                    <center><h4>No friends online 😢</h4> </center>
+                 {%endif%}
+                
             </div>
             
 
