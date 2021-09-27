@@ -389,3 +389,8 @@ def customFlash(flashMessage, url):
     return redirect(url)
 if __name__ == '__main__':
     app.run(host='localhost')
+    
+    
+    
+    
+    kaka
