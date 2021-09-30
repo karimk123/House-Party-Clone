@@ -2,6 +2,7 @@ things to do {
 	style the home page;✅
 	add user to a room automatically when they open the website;
 	style the calling screen.
+	make it detect disconnect from twilio itself instead of onbeforeunload becaues the pop up is annoying
 	
 	
 	
