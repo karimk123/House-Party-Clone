@@ -11,7 +11,9 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	/* font-family: 'Poppins', sans-serif; */
 	font-family: 'Montserrat', sans-serif;
+
 	height: 100vh;
 	margin: -20px 0 50px;
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -24,7 +26,8 @@ body {
     width: 10px;
 }
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #ffffffa6;
+    
     border-radius: 40px;
 }
 ::-webkit-scrollbar-track {
@@ -192,6 +195,10 @@ button:focus {
     padding: 23px;
     border-radius: 19px;
     width: fit-content;
+    min-height: 96%;
+    position: fixed;
+    top: 10px;
+    left: 10px;
 }
 
 .user{
@@ -275,6 +282,8 @@ button:focus {
     cursor: pointer;
     transition: 0.3s;
     margin-left:13px;
+    box-shadow: -1px 0px 8px 0px #00000063;
+    
 }
 .fa-bell:hover {
     opacity:0.7;

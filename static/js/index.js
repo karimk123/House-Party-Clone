@@ -186,6 +186,14 @@ function Notis (){
     notiToggle = !notiToggle;
     $("#notis").slideToggle()
     $(".fa-bell").css("text-shadow", notiToggle ? "1px 3px 13px #000000ba": "none" )
+    if($("#search-res").html().trim() == ""){
+        $("#notis-hr").hide()
+    }
+    else {
+        $("#notis-hr").show()
+        
+
+    }
 }
 
 function reRender(name){
@@ -200,4 +208,5 @@ function reRender(name){
     console.log(div)
     var element = div
 	element.parentNode.removeChild(element);
+    
 }

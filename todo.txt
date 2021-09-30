@@ -1,5 +1,7 @@
 things to do {
-	style the home page;
+	style the home page;✅
+	add user to a room automatically when they open the website;
+	style the calling screen.
 	
 	
 	
@@ -9,5 +11,6 @@ doing right now {
 
 	friends{
 		fetching ✅;
+		calling: TODO
 	}
 }

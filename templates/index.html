@@ -7,8 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <div style="display:none;">
-            <h1>Flask & Twilio Video Conference</h1>
+        <div style="display:block;">
             <form>
                 <label for="username">Name: </label>
                 <input type="text" name=”username” id="username">
@@ -54,7 +53,7 @@
                  {%if not data[name]["recived"]%}
                     <h4>No requests.</h4>
                  {%endif%}
-                                 <hr>
+                                 <hr id="notis-hr">
             </div>
 
             <div id="search-res">
