@@ -15,3 +15,9 @@ doing right now {
 		display when a friend is online;
 	}
 }
+
+
+bugs {
+	rendering bug when accepting a friend request from the notis.
+	
+}

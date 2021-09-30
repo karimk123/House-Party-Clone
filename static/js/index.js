@@ -1,3 +1,44 @@
+
+    window.addEventListener('load', function(e) {
+  if (navigator.onLine) {
+    setStatus("online")
+  } else {
+    setStatus("offline")
+  }
+}, false);
+
+window.addEventListener('online', function(e) {
+    setStatus("online")
+}, false);
+
+window.addEventListener('offline', function(e) {
+    setStatus("offline")
+}, false);
+
+window.addEventListener('beforeunload', function (e) {
+    e.preventDefault();
+    setStatus("offline")
+    $('body').mousemove(checkunload);
+    e.returnValue = '';
+});
+
+function checkunload() {   
+  $('body').unbind("mousemove");
+  //ADD CODE TO RUN IF CANCEL WAS CLICKED
+  setStatus("online")
+}
+
+function setStatus(status) {
+    let formData = new FormData();
+    formData.append('status', status);
+    fetch("/set-status", {
+        method: 'POST',
+        body: formData
+    })
+}
+
+
+
 function addFriend(name){
 
     let formData = new FormData
@@ -87,7 +128,10 @@ function search(text){
         }).then((data) => {
             let resData = data['resData'] // => {"user1": "normal"}
             data = data['res'] // => [user1, user2, user3, ...]
+
             document.getElementById("search-res").innerHTML = ""
+            if($(".fa-bell:first").css("text-shadow") != "none"){ $("#search-res").html("<hr>")}
+            console.log($(".fa-bell:first").css("text-shadow"));
             for(let i = 0; i < data.length; i++){
                 var currUser = data[i]
                 let div = document.createElement("div")
@@ -170,6 +214,7 @@ function search(text){
             }
             if(data.length == 0){
                 document.getElementById("search-res").innerHTML = "<h3>No results found!</h3>"
+                if($(".fa-bell:first").css("text-shadow") != "none"){ $("#search-res").html("<hr style=\"width:204%\"><h3> No results found!</h3>")}
             }
         
     
@@ -185,6 +230,7 @@ var notiToggle = false;
 function Notis (){ 
     notiToggle = !notiToggle;
     $("#notis").slideToggle()
+    $("#notis-circle").hide()
     $(".fa-bell").css("text-shadow", notiToggle ? "1px 3px 13px #000000ba": "none" )
     if($("#search-res").html().trim() == ""){
         $("#notis-hr").hide()

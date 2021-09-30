@@ -31,6 +31,9 @@ with open("db/data.json") as fp:
 with open("db/FP_codes.json") as fp:
     FP_codes = json.load(fp)
 
+with open("db/status.json") as fp:
+    status = json.load(fp)
+
 def get_chatroom(name):
     for conversation in twilio_client.conversations.conversations.stream():
         if conversation.friendly_name == name:
@@ -45,6 +48,8 @@ def saveJson():
         json.dump(data, fp, indent=4)
     with open("db/FP_codes.json", "w+") as fp:
         json.dump(FP_codes, fp, indent=4)
+    with open("db/status.json", "w+") as fp:
+        json.dump(status, fp, indent=4)
 
 
 
@@ -91,15 +96,22 @@ def index():
     global data,posts
     name = request.cookies.get("name")
     pw = request.cookies.get("pw")
+
     if name != "" and name != None and pw != "" and pw != None:
         if auth(name, pw):
-            
+
+            onlineFriends = [
+                user
+                for user in status
+                if user in data[name]['friends'] and status[user] == "online"
+            ]
             return render_template(
                 "index.html",
                 r=random.randint(0,234234),
                 friends=data[name]['friends'],
                 sent=data[name]['sent'],
                 recived=data[name]['recived'],
+                onlineFriends=onlineFriends,
                 data=data,
                 name=name
             )
@@ -169,6 +181,7 @@ def sign_up():
                 "recived":[],
                 "sent":[]
             }
+            status[name] = "offline"
             saveJson()
 
             cookie = make_response(redirect('/'))
@@ -382,6 +395,20 @@ def unfriend():
 #     if auth(name, pw):
 #         return jsonify({"res":data[name]['recived']})
 #     return "False"
+
+@app.route('/set-status', methods=['POST'])
+def set_status():
+    username = request.cookies.get("name")
+    pw = request.cookies.get("pw")
+    wantedStatus = request.form.get("status")
+    print(username,wantedStatus)
+    if auth(username, pw) and wantedStatus in ["online", "offline"]:
+        status[username] = wantedStatus
+        saveJson()
+        return "success"
+    
+    return "error"
+
 
 
 @app.route('/flash=<flashMessage>_url=<url>')

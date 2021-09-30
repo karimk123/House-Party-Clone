@@ -216,10 +216,16 @@ button:focus {
 
 
 .user span {
-    padding-left: 8px;
+    /* padding-left: 8px;
     font-size: 29px;
     position: absolute;
-    margin-top: 4px;
+    margin-top: 4px; I COMMENTED THIS CUZ IT CAUSES A BUG IN THE NOTI SLIDE ANIMATION*/
+
+    padding-left: 4px;
+    font-size: 29px;
+    position: relative;
+    margin-right: -109px;
+    top: -7px;
 
 
 }
@@ -292,4 +298,20 @@ button:focus {
 #notis h3 {
     text-align: center;
     /* text-shadow: -1px 1px 18px #0000008c; */
+}
+
+
+.user .fa-circle {
+    color: #36e136;
+    font-size: 13px;
+    position: relative;
+    top: -4px;
+    left: -23px;
+    margin-right: -27px;
+}
+
+
+#notis-circle {
+    position: absolute;
+    color: #f64e4e;
 }
