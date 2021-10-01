@@ -44,21 +44,20 @@
             </div>
 
             <div id="notis" style="display: none;">
-                <hr>
-                    <h3>Friend Requests</h3>
+                <hr><h3>Friend Requests</h3>
                  {%for user in data[name]['recived']%}
                     <div class="user">
                         <img draggable="false" class="pfp" src="/{{data[user]['pfp']}}">
                         <span>{{user}}</span>
-                        <span onclick="acceptReq('{{user}}');reRender()" id="accept-btn" class="fas fa-user-check userBtns"></span>
-                        <span onclick="reject('{{user}}');reRender()" class="fas fa-user-minus userBtns" id="reject-btn"></span>
+                        <span onclick="acceptReq('{{user}}')" id="accept-btn" class="fas fa-user-check userBtns"></span>
+                        <span onclick="reject('{{user}}');reRender('{{user}}')" class="fas fa-user-minus userBtns" id="reject-btn"></span>
                     </div>
                  {%endfor%}
                  {%if not data[name]["recived"]%}
                     <h4>No requests.</h4>
 
                  {%endif%}
-                                 <hr id="notis-hr">
+                  <hr id="notis-hr">
             </div>
 
             <div id="search-res">
@@ -66,22 +65,8 @@
             </div>
             <hr>
             <div id='friends-div'>
-                <h4 style="">Friends</h4>
-                <!-- {%for friend in friends%}
-
-                    <div class="user">
-                        <img draggable="false" class="pfp" src="/{{data[friend]['pfp']}}">
-                        <span>{{friend}}</span>
-                        <span id="call-btn" class="fas fa-phone-alt userBtns"></span>
-                        <span onclick="unfriend('{{friend}}');reRender('{{friend}}')" class="fas fa-user-minus userBtns" id="rm-friend-btn"></span>
-                    </div>
-
-                {%endfor%}
-                {%if not friends%}
-                    <center><h4>No friends online 😢</h4> </center>
-                 {%endif%}
-                 -->
-    {%for friend in onlineFriends%}
+                <h4>Friends</h4>
+                    {%for friend in onlineFriends%}
 
                         <div class="user">
                             <img draggable="false" class="pfp" src="/{{data[friend]['pfp']}}">
@@ -93,7 +78,7 @@
 
                     {%endfor%}
                     {%if not onlineFriends%}
-                        <center><h4>No friends online 😢</h4> </center>
+                        <center><h4 id="noOnlineFriendsH4">No friends online 😢</h4> </center>
                     {%endif%}
             </div>
             

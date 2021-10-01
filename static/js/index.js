@@ -66,7 +66,6 @@ function acceptReq(name){
     fetch("/accept-req", {method: "POST",body:formData}).then((res) => {
         search(document.getElementById("search-input").value)
     })
-
     let div = document.createElement("div")
     div.className = "user"
     let btn = document.createElement("span")
@@ -95,7 +94,16 @@ function acceptReq(name){
     div.appendChild(callBtn)
     div.appendChild(btn)
     document.getElementById("friends-div").appendChild(div)
+    var wantedDiv = ""
+    for(let i = 0; i<document.getElementById("notis").getElementsByClassName("user").length;i++){
+        console.log(document.getElementById("notis").getElementsByClassName("user")[i].getElementsByTagName("span")[0].innerText)
+        if(document.getElementById("notis").getElementsByClassName("user")[i].getElementsByTagName("span")[0].innerText == currUser){
+            wantedDiv = document.getElementById("notis").getElementsByClassName("user")[i]
+            console.log(wantedDiv)
+	        wantedDiv.parentNode.removeChild(wantedDiv);
 
+        }
+    }
 
 }
 function unfriend(name){
@@ -132,11 +140,12 @@ function search(text){
             document.getElementById("search-res").innerHTML = ""
             if($(".fa-bell:first").css("text-shadow") != "none"){ $("#search-res").html("<hr>")}
             console.log($(".fa-bell:first").css("text-shadow"));
+            var currUser = "not set"
             for(let i = 0; i < data.length; i++){
-                var currUser = data[i]
+                currUser = data[i]
                 let div = document.createElement("div")
                 div.className = "user"
-                console.log(resData[currUser])
+                console.log(resData[data[i]])
                 /*
 
                 ana => user : remove request (<i class="fas fa-minus-square"></i>)
@@ -146,22 +155,22 @@ function search(text){
                     
                 */
                 let btn = document.createElement("span")
-                if(resData[currUser] == "me_sent"){ // i sent him
+                if(resData[data[i]] == "me_sent"){ // i sent him
                     btn.className = "fas fa-minus-square userBtns"
                     btn.onclick = () => {
-                        removeSentReq(currUser)
+                        removeSentReq(data[i])
                     }
                     btn.id = "rm-req-btn"
                 }
-                else if(resData[currUser] == "user_sent"){ // i sent him
+                else if(resData[data[i]] == "user_sent"){ // i sent him
                     btn.className = "fas fa-user-check userBtns"
                     btn.onclick = () => {
-                        acceptReq(currUser)
+                        acceptReq(data[i])
                     }
                     btn.id = "accept-btn"
                     var rejectBtn = document.createElement("span")
                     rejectBtn.onclick = () => {
-                        reject(currUser)
+                        reject(data[i])
                     }
                     rejectBtn.id = "reject-btn"
                     rejectBtn.className = "fas fa-user-minus userBtns"
@@ -169,10 +178,10 @@ function search(text){
                     div.style.width = "300px"
 
                 }
-                else if(resData[currUser] == "friends"){ // i sent him
+                else if(resData[data[i]] == "friends"){ // i sent him
                     btn.className = "fas fa-user-minus userBtns"
                     btn.onclick = () => {
-                        unfriend(currUser)
+                        unfriend(data[i])
                     }
                     btn.id = "rm-friend-btn"
 
@@ -186,7 +195,8 @@ function search(text){
                 }else{
                     btn.className = "fas fa-user-plus userBtns"
                     btn.onclick = () => {
-                        addFriend(currUser)
+                        console.log(data[i])
+                        addFriend(data[i])
                     }
                     btn.id = "add-friend-btn"
                 }
@@ -240,19 +250,104 @@ function Notis (){
         
 
     }
+    reRender()
 }
 
-function reRender(name){
-    //document.getElementsByClassName("user")[0].getElementsByTagName("span")[0].innerText
-    var div = ""
-    for(let i = 0; document.getElementsByClassName("user").length>i;i++){
+function reRender(){
+    fetch("/get-friends").then((res) => {return res.json()}).then((data) => { // load friend list
+        data = data['res']
+        console.log(data)
+        var friendsDiv = document.getElementById("friends-div")
+        friendsDiv.innerHTML = "<h4>Friends</h4>"
+        if(Object.keys(data).length == 0){
+            friendsDiv.innerHTML += `<center><h4 id="noOnlineFriendsH4">No friends online 😢</h4> </center>`
+        }else{
+            for(let i=0;i<Object.keys(data).length;i++){
 
-        if(document.getElementsByClassName("user")[i].getElementsByTagName("span")[0].innerText == name){
-            div = document.getElementsByClassName("user")[i]
+               let username = Object.keys(data)[i]
+               console.log(username)
+               var div = document.createElement("div")
+               div.className = "user"
+               let img = document.createElement("img")
+               img.draggable = false
+               img.className = "pfp"
+               img.src = `${data[username]['pfp']}`
+               div.appendChild(img)
+                if(data[username]['status'] == "online"){
+                    let circle = document.createElement("i")
+                    circle.className = "fas fa-circle"
+                    div.appendChild(circle)
+                }
+               let span1 = document.createElement("span")
+               span1.innerText = username
+               div.appendChild(span1)
+               let span2 = document.createElement("span")
+               span2.id = "call-btn"
+               span2.className = "fas fa-phone-alt userBtns"
+               div.appendChild(span2)
+                let span3 = document.createElement("span")
+                span3.onclick = () => {
+                    unfriend(username);reRender()
+                }
+                span3.id = "rm-friend-btn"
+                span3.className = "fas fa-user-minus userBtns"
+                div.appendChild(span3)
+                friendsDiv.appendChild(div)
+            }
         }
-    }
-    console.log(div)
-    var element = div
-	element.parentNode.removeChild(element);
+
+    })
     
+
+    //////////////////////////////////////
+
+
+    fetch("/get-reqs").then((res) => {return res.json()}).then((data) => { // load notifications
+        data = data['res']
+        console.log(data)
+        var notis = document.getElementById("notis")
+        notis.innerHTML = "<hr><h3>Friend Requests</h3>"
+        if(Object.keys(data).length == 0){
+            notis.innerHTML += `<h4>No requests.</h4>`
+        }else{
+            for(let i=0;i<Object.keys(data).length;i++){
+
+               let username = Object.keys(data)[i]
+               console.log(username)
+               let div = document.createElement("div")
+               div.className = "user"
+               let img = document.createElement("img")
+               img.draggable = false
+               img.className = "pfp"
+               img.src = `${data[username]['pfp']}`
+               div.appendChild(img)
+                // if(data[username]['status'] == "online"){
+                //     let circle = document.createElement("i")
+                //     circle.className = "fas fa-circle"
+                //     div.appendChild(circle)
+                // }
+               let span1 = document.createElement("span")
+               span1.innerText = username
+               div.appendChild(span1)
+               let span2 = document.createElement("span")
+               span2.onclick = () => {
+                    acceptReq(username)
+               }
+               span2.id = "accept-btn"
+               span2.className = "fas fa-user-check userBtns"
+               div.appendChild(span2)
+                let span3 = document.createElement("span")
+                span3.onclick = () => {
+                    reject(username);reRender()
+                }
+                span3.id = "reject-btn"
+                span3.className = "fas fa-user-minus userBtns"
+                div.appendChild(span3)
+                notis.appendChild(div)
+            }
+        }
+
+    })
+
+
 }
