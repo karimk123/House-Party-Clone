@@ -7,10 +7,10 @@
         <script src="/static/js/index.js?r={{r}}"></script>
     </head>
     <body>
-        <div style="display:block;">
+        <div id="content" style="display:inline-block;">
             <form>
-                <label for="username">Name: </label>
-                <input type="text" name=”username” id="username">
+                <!-- <label for="username">Name: </label> -->
+                <input value="{{name}}" type="hidden" name=”username” id="username">
                 <button id="join_leave">Join call</button>
                 <button id="share_screen" disabled>Share screen</button>
                 <button id="toggle_chat" disabled>Toggle chat</button>
