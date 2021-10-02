@@ -13,7 +13,7 @@ doing right now {
 	friends{
 		fetching ✅;
 		calling: TODO;
-		display when a friend is online;
+		display online friends and offline friends seperately
 	}
 }
 
