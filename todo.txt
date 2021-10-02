@@ -20,5 +20,6 @@ doing right now {
 
 bugs {
 	rendering bug when accepting a friend request from the notis.
+	add grey cirlce when user is offline
 	
 }
