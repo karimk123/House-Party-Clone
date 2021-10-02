@@ -388,13 +388,19 @@ def unfriend():
     
     return ""
 
-# @app.route('/get-reqs')
-# def get_friend_requests():
-#     name = request.cookies.get("name")
-#     pw = request.cookies.get("pw")
-#     if auth(name, pw):
-#         return jsonify({"res":data[name]['recived']})
-#     return "False"
+@app.route('/get-reqs')
+def get_friend_requests():
+    name = request.cookies.get("name")
+    pw = request.cookies.get("pw")
+    res = {}
+    if auth(name, pw):
+        for user in data[name]['recived']:
+            res[user] = {
+                "status":status[user],
+                "pfp":data[user]['pfp']
+                }
+        return jsonify({"res":res})
+    return "False"
 
 @app.route('/set-status', methods=['POST'])
 def set_status():
@@ -409,7 +415,19 @@ def set_status():
     
     return "error"
 
-
+@app.route('/get-friends')
+def get_friends():
+    name = request.cookies.get("name")
+    pw = request.cookies.get("pw")
+    res = {}
+    if auth(name, pw):
+        for friend in data[name]['friends']:
+            res[friend] = {
+                "status":status[friend],
+                "pfp":data[friend]['pfp']
+                }
+        return jsonify({"res":res})
+    return "False"
 
 @app.route('/flash=<flashMessage>_url=<url>')
 def customFlash(flashMessage, url):
@@ -417,6 +435,6 @@ def customFlash(flashMessage, url):
     flash(flashMessage)
     return redirect(url)
 if __name__ == '__main__':
-    app.run(host='localhost')
+    app.run(host='localhost', debug=True)
 
 #Made by Fepz (Kar1m, Kimo)

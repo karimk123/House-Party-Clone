@@ -208,7 +208,7 @@ button:focus {
     border-radius:20px;
     cursor:pointer;
     font-family: 'Poppins', sans-serif;
-    width: 340px;
+    width: 340px !important;
 }
 .user .pfp{
     height: 39px
@@ -308,10 +308,14 @@ button:focus {
     top: -4px;
     left: -23px;
     margin-right: -27px;
+    
 }
 
 
 #notis-circle {
     position: absolute;
     color: #f64e4e;
+}
+#content{
+    
 }
