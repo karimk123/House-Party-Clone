@@ -56,7 +56,7 @@ function connect(username) {
     let promise = new Promise((resolve, reject) => {
         // get a token from the back end
         let data;
-        let chosenRoom = prompt("choose a room to join")
+        
         fetch('/login/' + chosenRoom, {
             method: 'POST',
             body: JSON.stringify({'username': username})

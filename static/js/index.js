@@ -6,6 +6,9 @@
     setStatus("offline")
   }
 
+  $("#username").val(accName)
+  $("#join_leave").click()
+
 
   reRender()
 }, false);

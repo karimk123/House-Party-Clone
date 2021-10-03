@@ -24,7 +24,7 @@ app.config['MAIL_PASSWORD'] = 'fepzmail123'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
-
+roomCounter = 0
 
 with open("db/data.json") as fp:
     data = json.load(fp)
@@ -113,7 +113,8 @@ def index():
                 recived=data[name]['recived'],
                 onlineFriends=onlineFriends,
                 data=data,
-                name=name
+                name=name,
+                chosenRoom=roomCounter
             )
         else:
             return render_template("auth.html", r=random.randint(0, 12132))
@@ -201,6 +202,7 @@ def sign_up():
 
 @app.route('/login/<room>', methods=['POST'])
 def login(room):
+    global roomCounter
     username = request.get_json(force=True).get('username')
     if not username:
         abort(401)
@@ -217,7 +219,7 @@ def login(room):
                         twilio_api_key_secret, identity=username)
     token.add_grant(VideoGrant(room=room))
     token.add_grant(ChatGrant(service_sid=conversation.chat_service_sid))
-
+    roomCounter+=1
     return {'token': token.to_jwt().decode(),
             'conversation_sid': conversation.sid}
 

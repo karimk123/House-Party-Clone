@@ -1,6 +1,5 @@
 things to do {
 	style the home page;✅
-	add user to a room automatically when they open the website;
 	style the calling screen.
 	make it detect disconnect from twilio itself instead of onbeforeunload becaues the pop up is annoying
 	
@@ -13,13 +12,7 @@ doing right now {
 	friends{
 		fetching ✅;
 		calling: TODO;
-		display online friends and offline friends seperately
 	}
+	add user to a room automatically when they open the website;
 }
 
-
-bugs {
-	rendering bug when accepting a friend request from the notis.
-	add grey cirlce when user is offline
-	
-}
