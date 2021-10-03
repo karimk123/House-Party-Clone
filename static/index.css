@@ -221,7 +221,7 @@ button:focus {
     position: absolute;
     margin-top: 4px; I COMMENTED THIS CUZ IT CAUSES A BUG IN THE NOTI SLIDE ANIMATION*/
 
-    padding-left: 4px;
+    padding-left: 22px;
     font-size: 29px;
     position: relative;
     margin-right: -109px;
@@ -306,7 +306,7 @@ button:focus {
     font-size: 13px;
     position: relative;
     top: -4px;
-    left: -23px;
+    left: -11px;
     margin-right: -27px;
     
 }

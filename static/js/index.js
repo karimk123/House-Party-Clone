@@ -5,6 +5,9 @@
   } else {
     setStatus("offline")
   }
+
+
+  reRender()
 }, false);
 
 window.addEventListener('online', function(e) {
@@ -104,6 +107,8 @@ function acceptReq(name){
 
         }
     }
+
+    $("#noOnlineFriendsH4").hide()
 
 }
 function unfriend(name){
@@ -259,8 +264,9 @@ function reRender(){
         console.log(data)
         var friendsDiv = document.getElementById("friends-div")
         friendsDiv.innerHTML = "<h4>Friends</h4>"
+        $("#noOnlineFriendsH4").hide()
         if(Object.keys(data).length == 0){
-            friendsDiv.innerHTML += `<center><h4 id="noOnlineFriendsH4">No friends online 😢</h4> </center>`
+            friendsDiv.innerHTML += `<center><h4 id="noOnlineFriendsH4">No friends yet 😢</h4> </center>`
         }else{
             for(let i=0;i<Object.keys(data).length;i++){
 
@@ -273,9 +279,20 @@ function reRender(){
                img.className = "pfp"
                img.src = `${data[username]['pfp']}`
                div.appendChild(img)
+               console.log(div.innerHTML)
+            //    if(!div.innerHTML.includes('fa-circle')){
+                   
+            //        div.innerHTML += '<i class="fas fa-circle" aria-hidden="true"></i>'
+            //    }
                 if(data[username]['status'] == "online"){
                     let circle = document.createElement("i")
                     circle.className = "fas fa-circle"
+                    div.appendChild(circle)
+                }
+                else {
+                     let circle = document.createElement("i")
+                    circle.className = "fas fa-circle"
+                    circle.style.color = "red"
                     div.appendChild(circle)
                 }
                let span1 = document.createElement("span")
