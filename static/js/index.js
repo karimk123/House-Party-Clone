@@ -85,7 +85,7 @@ function acceptReq(name){
 
     var callBtn = document.createElement("span")
     callBtn.onclick = () => {
-        // later
+        joinPopUp(currUser)
     }
     callBtn.id = "call-btn"
     callBtn.className = "fas fa-phone-alt userBtns"
@@ -102,10 +102,8 @@ function acceptReq(name){
     document.getElementById("friends-div").appendChild(div)
     var wantedDiv = ""
     for(let i = 0; i<document.getElementById("notis").getElementsByClassName("user").length;i++){
-        console.log(document.getElementById("notis").getElementsByClassName("user")[i].getElementsByTagName("span")[0].innerText)
         if(document.getElementById("notis").getElementsByClassName("user")[i].getElementsByTagName("span")[0].innerText == currUser){
             wantedDiv = document.getElementById("notis").getElementsByClassName("user")[i]
-            console.log(wantedDiv)
 	        wantedDiv.parentNode.removeChild(wantedDiv);
 
         }
@@ -147,13 +145,11 @@ function search(text){
 
             document.getElementById("search-res").innerHTML = ""
             if($(".fa-bell:first").css("text-shadow") != "none"){ $("#search-res").html("<hr>")}
-            console.log($(".fa-bell:first").css("text-shadow"));
             var currUser = "not set"
             for(let i = 0; i < data.length; i++){
                 currUser = data[i]
                 let div = document.createElement("div")
                 div.className = "user"
-                console.log(resData[data[i]])
                 /*
 
                 ana => user : remove request (<i class="fas fa-minus-square"></i>)
@@ -195,7 +191,7 @@ function search(text){
 
                     var callBtn = document.createElement("span")
                     callBtn.onclick = () => {
-                        // later
+                        joinPopUp(username)
                     }
                     callBtn.id = "call-btn"
                     callBtn.className = "fas fa-phone-alt userBtns"
@@ -287,10 +283,20 @@ function reRender(){
                    
             //        div.innerHTML += '<i class="fas fa-circle" aria-hidden="true"></i>'
             //    }
+            let span1 = document.createElement("span")
+               span1.innerText = username
+               div.appendChild(span1)
                 if(data[username]['status'] == "online"){
                     let circle = document.createElement("i")
                     circle.className = "fas fa-circle"
                     div.appendChild(circle)
+                    let span2 = document.createElement("span")
+                    span2.id = "call-btn"
+                    span2.className = "fas fa-phone-alt userBtns"
+                    span2.onclick = () => {
+                            joinPopUp(username)
+                        }
+                    div.appendChild(span2)
                 }
                 else {
                      let circle = document.createElement("i")
@@ -298,13 +304,8 @@ function reRender(){
                     circle.style.color = "red"
                     div.appendChild(circle)
                 }
-               let span1 = document.createElement("span")
-               span1.innerText = username
-               div.appendChild(span1)
-               let span2 = document.createElement("span")
-               span2.id = "call-btn"
-               span2.className = "fas fa-phone-alt userBtns"
-               div.appendChild(span2)
+               
+               
                 let span3 = document.createElement("span")
                 span3.onclick = () => {
                     unfriend(username);reRender()
@@ -324,7 +325,6 @@ function reRender(){
 
     fetch("/get-reqs").then((res) => {return res.json()}).then((data) => { // load notifications
         data = data['res']
-        console.log(data)
         var notis = document.getElementById("notis")
         notis.innerHTML = "<hr><h3>Friend Requests</h3>"
         if(Object.keys(data).length == 0){
@@ -333,7 +333,6 @@ function reRender(){
             for(let i=0;i<Object.keys(data).length;i++){
 
                let username = Object.keys(data)[i]
-               console.log(username)
                let div = document.createElement("div")
                div.className = "user"
                let img = document.createElement("img")
@@ -370,4 +369,33 @@ function reRender(){
     })
 
 
+}
+
+
+
+var callOptionsOPen = false
+function joinPopUp(username){
+    $("#call-options").show()
+    $("#call-options").css("display", "inherit")
+    $("#allContent").css("opacity", "0.5")
+    callOptionsOPen = true;
+    $("#joinBtn")[0].onclick = () => {
+        joinUser(username)
+    }
+    return
+    
+}
+document.addEventListener('mousedown', function(event) {
+    if(!callOptionsOPen)return
+var isClickInsideElement = $("#call-options")[0].contains(event.target);
+if (!isClickInsideElement) {
+    $("#call-options").hide()
+    $("#allContent").css("opacity", "1")
+}
+});
+function joinUser(targetName){
+    fetch("/get-room-code_user=" + targetName).then((res) => {return res.json()}).then((res) => {
+        let targetRoomCode = res["code"]
+        connect(accName, targetRoomCode)
+    })
 }

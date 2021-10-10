@@ -1,26 +1,28 @@
 {
     "kar1m": {
         "birthday": "2007-04-25",
+        "currentRoom": "13",
         "email": "karimh151515@gmail.com",
         "friends": [
-            "tester"
+            "tester",
+            "karim"
         ],
         "joined": "20/09/2021",
         "name": "kar1m",
         "notifications": [],
         "pfp": "static/images/default.jpg",
         "pw": "202cb962ac59075b964b07152d234b70",
-        "recived": [
-            "karim"
-        ],
+        "recived": [],
         "sent": [],
         "settings": {}
     },
     "karim": {
         "birthday": "2007-06-14",
+        "currentRoom": "14",
         "email": "karimkhalifa110@gmail.com",
         "friends": [
-            "tester"
+            "tester",
+            "kar1m"
         ],
         "joined": "20/09/2021",
         "name": "karim",
@@ -28,13 +30,12 @@
         "pfp": "static/images/default.jpg",
         "pw": "202cb962ac59075b964b07152d234b70",
         "recived": [],
-        "sent": [
-            "kar1m"
-        ],
+        "sent": [],
         "settings": {}
     },
     "tester": {
         "birthday": "2021-08-31",
+        "currentRoom": "",
         "email": "tomkaka120@gmail.com",
         "friends": [
             "kar1m",

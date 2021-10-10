@@ -1,18 +1,14 @@
 things to do {
 	style the home page;✅
 	style the calling screen.
+	not be able to join someone when they are offline
 	make it detect disconnect from twilio itself instead of onbeforeunload becaues the pop up is annoying
 	be able to join friends in a room 
 	be able to invite someone and send them a notification
-	
-
-	
-	
-	
 }
 
-doing right now {
 
+doing right now {
 	friends{
 		fetching ✅;
 		calling: TODO;

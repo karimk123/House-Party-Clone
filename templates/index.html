@@ -7,89 +7,100 @@
         <script>
             var accName = '{{name}}'
             var chosenRoom = "{{chosenRoom}}"
+            console.log(chosenRoom)
         </script>
         <script src="/static/js/index.js?r={{r}}"></script>
     </head>
     <body>
-        <div id="content" style="display:inline-block;">
-            <form>
-                <!-- <label for="username">Name: </label> -->
-                <input value="{{name}}" type="hidden" name=”username” id="username">
-                <button id="join_leave">Join call</button>
-                <button id="share_screen" disabled>Share screen</button>
-                <button id="toggle_chat" disabled>Toggle chat</button>
-            </form>
-            <p id="count">Disconnected.</p>
-            <div id="root">
-                <div id="container" class="container">
-                    <div id="local" class="participant"><div></div><div class="label">Me</div></div>
-                </div>
-                <div id="chat">
-                    <div id="chat-scroll">
-                        <div id="chat-content">
-                        </div>
+        <div id="allContent">
+
+            <div id="content" style="display:inline-block;">
+                <form id="controls">
+                    <input value="{{name}}" type="hidden" name=”username” id="username">
+                    <button id="join_leave">Join call</button>
+                    <button id="share_screen" disabled>Share screen</button>
+                    <!-- <button id="toggle_chat" disabled>Toggle chat</button> -->
+                </form>
+                <p style="display: none;" id="count">Disconnected.</p>
+                <div id="root">
+                    <div id="container" class="container">
+                        <div id="local" class="participant"><div></div><div class="label">Me</div></div>
                     </div>
-                    <input id="chat-input" type="text">
+                    <div id="chat">
+                        <div id="chat-scroll">
+                            <div id="chat-content">
+                            </div>
+                        </div>
+                        <input id="chat-input" type="text">
+                    </div>
                 </div>
             </div>
-        </div>
-
-
-        <div id="friends-list">
-            <div id="search-bar">
-
-                <input autocomplete="off" id='search-input' type="search" oninput="search(this.value)" placeholder="Search...">
-                <i class="fas fa-bell" onclick="Notis()"></i>
-                {%if  data[name]["recived"]%}
-
-                    <i class="fas fa-circle" id="notis-circle"></i>
-                {%endif%}
-                
-            </div>
-
-            <div id="notis" style="display: none;">
-                <hr><h3>Friend Requests</h3>
-                 {%for user in data[name]['recived']%}
-                    <div class="user">
-                        <img draggable="false" class="pfp" src="/{{data[user]['pfp']}}">
-                        <span>{{user}}</span>
-                        <span onclick="acceptReq('{{user}}')" id="accept-btn" class="fas fa-user-check userBtns"></span>
-                        <span onclick="reject('{{user}}');reRender('{{user}}')" class="fas fa-user-minus userBtns" id="reject-btn"></span>
-                    </div>
-                 {%endfor%}
-                 {%if not data[name]["recived"]%}
-                    <h4>No requests.</h4>
-
-                 {%endif%}
-                  <hr id="notis-hr">
-            </div>
-
-            <div id="search-res">
-               
-            </div>
-            <hr>
-            <div id='friends-div'>
-                <h4>Friends</h4>
-                    {%for friend in onlineFriends%}
-
-                        <div class="user">
-                            <img draggable="false" class="pfp" src="/{{data[friend]['pfp']}}">
-                            <i class="fas fa-circle"></i>
-                            <span>{{friend}}</span>
-                            <span id="call-btn" class="fas fa-phone-alt userBtns"></span>
-                            <span onclick="unfriend('{{friend}}');reRender('{{friend}}')" class="fas fa-user-minus userBtns" id="rm-friend-btn"></span>
-                        </div>
-
-                    {%endfor%}
-                    {%if not onlineFriends%}
-                        <center><h4 id="noOnlineFriendsH4">No friends yet 😢</h4> </center>
+    
+    
+            <div id="friends-list">
+                <div id="search-bar">
+    
+                    <input autocomplete="off" id='search-input' type="search" oninput="search(this.value)" placeholder="Search...">
+                    <i class="fas fa-bell" onclick="Notis()"></i>
+                    {%if  data[name]["recived"]%}
+    
+                        <i class="fas fa-circle" id="notis-circle"></i>
                     {%endif%}
+                    
+                </div>
+    
+                <div id="notis" style="display: none;">
+                    <hr><h3>Friend Requests</h3>
+                     {%for user in data[name]['recived']%}
+                        <div class="user">
+                            <img draggable="false" class="pfp" src="/{{data[user]['pfp']}}">
+                            <span>{{user}}</span>
+                            <span onclick="acceptReq('{{user}}')" id="accept-btn" class="fas fa-user-check userBtns"></span>
+                            <span onclick="reject('{{user}}');reRender('{{user}}')" class="fas fa-user-minus userBtns" id="reject-btn"></span>
+                        </div>
+                     {%endfor%}
+                     {%if not data[name]["recived"]%}
+                        <h4>No requests.</h4>
+    
+                     {%endif%}
+                      <hr id="notis-hr">
+                </div>
+    
+                <div id="search-res">
+                   
+                </div>
+                <hr>
+                <div id='friends-div'>
+                    <h4>Friends</h4>
+                        {%for friend in onlineFriends%}
+    
+                            <div class="user">
+                                <img draggable="false" class="pfp" src="/{{data[friend]['pfp']}}">
+                                <i class="fas fa-circle"></i>
+                                <span>{{friend}}</span>
+                                {%if friend not in onlineFriends%}
+                                <span id="call-btn"  class="fas fa-phone-alt userBtns"></span>
+                                {%endif%}
+                                <span onclick="unfriend('{{friend}}');reRender('{{friend}}')" class="fas fa-user-minus userBtns" id="rm-friend-btn"></span>
+                            </div>
+    
+                        {%endfor%}
+                        {%if not onlineFriends%}
+                            <center><h4 id="noOnlineFriendsH4">No friends yet 😢</h4> </center>
+                        {%endif%}
+                </div>
+                
+    
             </div>
-            
-
+            <script src="https://media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+            <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script>
+            <script src="{{ url_for('static', filename='app.js') }}"></script>
         </div>
-        <script src="https://media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
-        <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script>
-        <script src="{{ url_for('static', filename='app.js') }}"></script>
+
+
+        <div id="call-options">
+            <button id="joinBtn" >Join</button>
+            <button id="inviteHereBtn">Invite Here</button>
+        </div>
     </body>
 </html>

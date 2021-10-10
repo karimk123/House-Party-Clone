@@ -52,7 +52,8 @@ function connectButtonHandler(event) {
     }
 };
 
-function connect(username) {
+function connect(username, roomChosen) {
+    if(!roomChosen) roomChosen = chosenRoom;
     let promise = new Promise((resolve, reject) => {
         // get a token from the back end
         let data;

@@ -105,6 +105,8 @@ def index():
                 for user in status
                 if user in data[name]['friends'] and status[user] == "online"
             ]
+            data[name]["currentRoom"] = roomCounter
+            saveJson()
             return render_template(
                 "index.html",
                 r=random.randint(0,234234),
@@ -180,7 +182,8 @@ def sign_up():
                 "notifications":[],
                 "friends":[],
                 "recived":[],
-                "sent":[]
+                "sent":[],
+                "currentRoom": "--"
             }
             status[name] = "offline"
             saveJson()
@@ -220,6 +223,8 @@ def login(room):
     token.add_grant(VideoGrant(room=room))
     token.add_grant(ChatGrant(service_sid=conversation.chat_service_sid))
     roomCounter+=1
+    data[username]["currentRoom"] = room
+    saveJson()
     return {'token': token.to_jwt().decode(),
             'conversation_sid': conversation.sid}
 
@@ -430,6 +435,12 @@ def get_friends():
                 }
         return jsonify({"res":res})
     return "False"
+
+
+@app.route('/get-room-code_user=<targetName>')
+def getRoomCode(targetName):
+
+    return jsonify({"code":data[targetName]["currentRoom"]})
 
 @app.route('/flash=<flashMessage>_url=<url>')
 def customFlash(flashMessage, url):

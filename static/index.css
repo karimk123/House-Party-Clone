@@ -326,5 +326,30 @@ background-color: #ffffff85;
 #content{
     
     position: fixed;
+    top: 20px;
     left: 583px;     
+}
+#controls{
+    position: fixed;
+    bottom: 70px;
+    left: 50%;
+}
+
+
+#call-options{
+    z-index: 1000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    width: 500px;
+    background: white; /*7amra*/
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    display: none;
+
+
 }
