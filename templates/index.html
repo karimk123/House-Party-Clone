@@ -12,11 +12,13 @@
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
         <!--  -->
-
         <script>
             var accName = '{{name}}'
             var chosenRoom = "{{chosenRoom}}"
         </script>
+        <script src="https://media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+        <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script>
+        <script src="/static/app.js?r={{r}}"></script>
         <script src="/static/js/index.js?r={{r}}"></script>
     </head>
     <body>
@@ -102,9 +104,7 @@
                 
     
             </div>
-            <script src="https://media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
-            <script src="https://media.twiliocdn.com/sdk/js/conversations/releases/1.0.0/twilio-conversations.min.js"></script>
-            <script src="{{ url_for('static', filename='app.js') }}"></script>
+            
         </div>
 
 
