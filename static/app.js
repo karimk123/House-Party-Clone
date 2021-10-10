@@ -14,6 +14,10 @@ let chat;
 let conv;
 let screenTrack;
 
+// window.addEventListener("load", () => {
+//     connect(accName, chosenRoom)
+// })
+
 function addLocalVideo() {
     Twilio.Video.createLocalVideoTrack().then(track => {
         let video = document.getElementById('local').firstChild;

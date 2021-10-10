@@ -429,8 +429,8 @@ function addInvite(room, username){
 }
 
 window.addEventListener("load", () => {
-    $("#join_leave").hide()
-    $(shareScreen).hide()
+    // $("#join_leave").hide()
+    // $(shareScreen).hide()
     setInterval(() => {
         fetch("/get-invs").then((res) => {return res.json()}).then((data) => {
             data = data['res']
