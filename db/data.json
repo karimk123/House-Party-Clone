@@ -1,12 +1,13 @@
 {
     "kar1m": {
         "birthday": "2007-04-25",
-        "currentRoom": "13",
+        "currentRoom": "18",
         "email": "karimh151515@gmail.com",
         "friends": [
             "tester",
             "karim"
         ],
+        "invite": "",
         "joined": "20/09/2021",
         "name": "kar1m",
         "notifications": [],
@@ -18,12 +19,13 @@
     },
     "karim": {
         "birthday": "2007-06-14",
-        "currentRoom": "14",
+        "currentRoom": "16",
         "email": "karimkhalifa110@gmail.com",
         "friends": [
             "tester",
             "kar1m"
         ],
+        "invite": "",
         "joined": "20/09/2021",
         "name": "karim",
         "notifications": [],
@@ -41,6 +43,7 @@
             "kar1m",
             "karim"
         ],
+        "invite": "",
         "joined": "30/09/2021",
         "name": "tester",
         "notifications": [],

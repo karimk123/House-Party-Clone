@@ -183,7 +183,8 @@ def sign_up():
                 "friends":[],
                 "recived":[],
                 "sent":[],
-                "currentRoom": "--"
+                "currentRoom": "--",
+                "invite":""
             }
             status[name] = "offline"
             saveJson()
@@ -447,6 +448,29 @@ def customFlash(flashMessage, url):
     url = "/" if url == "EMPTY" else "/" + url
     flash(flashMessage)
     return redirect(url)
+
+@app.route("/send-invite=<user>/<room>")
+def send_invite(user, room):
+    name = request.cookies.get("name")
+    pw = request.cookies.get("pw")
+    if auth(name, pw):
+        if user in data.keys():
+            data[user]["invite"] = {"user":name,"room":room}
+            saveJson()            
+            return "success"
+
+@app.route("/get-invs")
+def get_invs():
+    name = request.cookies.get("name")
+    pw = request.cookies.get("pw")
+    if auth(name, pw):
+        r = data[name]["invite"]
+        data[name]["invite"] = ""
+        saveJson()
+        return jsonify({"res":r})
+        
+
+
 if __name__ == '__main__':
     app.run(host='localhost', debug=True)
 

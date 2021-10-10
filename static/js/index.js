@@ -382,6 +382,9 @@ function joinPopUp(username){
     $("#joinBtn")[0].onclick = () => {
         joinUser(username)
     }
+    $("#inviteHereBtn")[0].onclick = () => {
+        inviteUser(username)
+    }
     return
     
 }
@@ -399,3 +402,29 @@ function joinUser(targetName){
         connect(accName, targetRoomCode)
     })
 }
+function inviteUser(username){
+    console.log("invite user")
+    fetch(`/send-invite=${username}/${chosenRoom}`)
+}
+
+function addInvite(room, username){
+    alertify.confirm(`${username} invited you to join his party!`,
+    function(){
+        alertify.success('Joining ' + username);
+        connect(accName, room)
+    },
+    function(){
+        alertify.error('You rejected the invite');
+    }).set('closable', false).set('movable', false)
+}
+
+window.addEventListener("load", () => {
+    setInterval(() => {
+        fetch("/get-invs").then((res) => {return res.json()}).then((data) => {
+            data = data['res']
+            if(data != ""){
+                addInvite(data['room'], data['user'])
+            }
+        })
+    }, 1500)
+})
