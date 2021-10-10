@@ -31,21 +31,21 @@ function connectButtonHandler(event) {
             alert('Enter your name before connecting');
             return;
         }
-        button.disabled = true;
-        button.innerHTML = 'Connecting...';
+        // button.disabled = true;
+        // button.innerHTML = 'Connecting...';
         connect(username).then(() => {
-            button.innerHTML = 'Leave call';
-            button.disabled = false;
+            // button.disabled = false;
             shareScreen.disabled = false;
         }).catch(() => {
             alert('Connection failed. Is the backend running?');
-            button.innerHTML = 'Join call';
-            button.disabled = false;
+            // button.innerHTML = 'Join call';
+            // button.disabled = false;
         });
     }
     else {
         disconnect();
-        button.innerHTML = 'Join call';
+        $(button).hide()
+        $(shareScreen).hide()
         connected = false;
         shareScreen.innerHTML = 'Share screen';
         shareScreen.disabled = true;
@@ -73,12 +73,27 @@ function connect(username, roomChosen) {
             connected = true;
             updateParticipantCount();
             connectChat(data.token, data.conversation_sid);
+            if(roomChosen != chosenRoom){
+            $("#join_leave").show()
+            $(shareScreen).show()
+            }
+              setTimeout(() => {
+
+        if($("#container video").length > 1){
+            $("#join_leave").show()
+            $(shareScreen).show()
+        }else{
+            $("#join_leave").hide()
+            $(shareScreen).hide()
+        }
+    },1000) 
             resolve();
         }).catch(e => {
             console.log(e);
             reject();
         });
     });
+
     return promise;
 };
 
@@ -112,11 +127,31 @@ function participantConnected(participant) {
     participant.on('trackUnsubscribed', trackUnsubscribed);
 
     updateParticipantCount();
+    setTimeout(() => {
+
+        if($("#container video").length > 1){
+            $("#join_leave").show()
+            $(shareScreen).show()
+        }else{
+            $("#join_leave").hide()
+            $(shareScreen).hide()
+        }
+    },1000)
 };
 
 function participantDisconnected(participant) {
     document.getElementById(participant.sid).remove();
     updateParticipantCount();
+setTimeout(() => {
+
+        if($("#container video").length > 1){
+            $("#join_leave").show()
+            $(shareScreen).show()
+        }else{
+            $("#join_leave").hide()
+            $(shareScreen).hide()
+        }
+    },1000)
 };
 
 function trackSubscribed(div, track) {
@@ -144,13 +179,16 @@ function disconnect() {
     }
     while (container.lastChild.id != 'local')
         container.removeChild(container.lastChild);
-    button.innerHTML = 'Join call';
+    // button.innerHTML = 'Join call';
     if (root.classList.contains('withChat')) {
         root.classList.remove('withChat');
     }
     toggleChat.disabled = true;
     connected = false;
     updateParticipantCount();
+    fetch("/get-room-id").then((res)=>{return res.json()}).then((res)=>{
+        connect(accName, res["res"])
+    })
 };
 
 function shareScreenHandler() {

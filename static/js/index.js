@@ -1,4 +1,4 @@
-
+var friends;
     window.addEventListener('load', function(e) {
   if (navigator.onLine) {
     setStatus("online")
@@ -24,6 +24,7 @@ window.addEventListener('offline', function(e) {
 window.addEventListener('beforeunload', function (e) {
     e.preventDefault();
     setStatus("offline")
+    disconnect()
     $('body').mousemove(checkunload);
     e.returnValue = '';
 });
@@ -199,7 +200,7 @@ function search(text){
                 }else{
                     btn.className = "fas fa-user-plus userBtns"
                     btn.onclick = () => {
-                        console.log(data[i])
+                        // console.log(data[i])
                         addFriend(data[i])
                     }
                     btn.id = "add-friend-btn"
@@ -260,7 +261,7 @@ function Notis (){
 function reRender(){
     fetch("/get-friends").then((res) => {return res.json()}).then((data) => { // load friend list
         data = data['res']
-        console.log(data)
+        // console.log(data)
         var friendsDiv = document.getElementById("friends-div")
         friendsDiv.innerHTML = "<h4>Friends</h4>"
         $("#noOnlineFriendsH4").hide()
@@ -270,7 +271,7 @@ function reRender(){
             for(let i=0;i<Object.keys(data).length;i++){
 
                let username = Object.keys(data)[i]
-               console.log(username)
+            //    console.log(username)
                var div = document.createElement("div")
                div.className = "user"
                let img = document.createElement("img")
@@ -278,7 +279,7 @@ function reRender(){
                img.className = "pfp"
                img.src = `${data[username]['pfp']}`
                div.appendChild(img)
-               console.log(div.innerHTML)
+            //    console.log(div.innerHTML)
             //    if(!div.innerHTML.includes('fa-circle')){
                    
             //        div.innerHTML += '<i class="fas fa-circle" aria-hidden="true"></i>'
@@ -371,7 +372,10 @@ function reRender(){
         }
 
     })
-
+    // setInterval(() => {
+        
+      
+    //     }, 3000);
 
 }
 
@@ -401,18 +405,20 @@ if (!isClickInsideElement) {
 }
 });
 function joinUser(targetName){
+     $("#call-options").hide()
+    $("#allContent").css("opacity", "1")
     fetch("/get-room-code_user=" + targetName).then((res) => {return res.json()}).then((res) => {
         let targetRoomCode = res["code"]
         connect(accName, targetRoomCode)
     })
 }
 function inviteUser(username){
-    console.log("invite user")
+    // console.log("invite user")
     fetch(`/send-invite=${username}/${chosenRoom}`)
 }
 
 function addInvite(room, username){
-    alertify.confirm(`${username} invited you to join his party!`,
+    alertify.confirm("Invite", `${username} invited you to join his party!`,
     function(){
         alertify.success('Joining ' + username);
         connect(accName, room)
@@ -423,6 +429,8 @@ function addInvite(room, username){
 }
 
 window.addEventListener("load", () => {
+    $("#join_leave").hide()
+    $(shareScreen).hide()
     setInterval(() => {
         fetch("/get-invs").then((res) => {return res.json()}).then((data) => {
             data = data['res']
@@ -430,5 +438,33 @@ window.addEventListener("load", () => {
                 addInvite(data['room'], data['user'])
             }
         })
+  friends = $("#friends-div .user")
+            
+        // console.log(friends.length);
+        for (let i = 0; i < friends.length; i++) {
+            const element = friends[i];
+            
+            friendName = element.getElementsByTagName("span")[0].innerText
+            // console.log(friendName)
+            
+            fetch("/get-user-status_user=" + friendName).then((data) => {
+                return data.json()
+            }).then((res) => {
+                res = res['res']
+                
+                if(res == "online"){
+                    element.getElementsByTagName("i")[0].style.color = "#36E136"
+                    reRender()
+                }
+                else if(res == "offline"){
+                    element.getElementsByTagName("i")[0].style.color = "red"
+                    reRender()
+                }
+            })
+
+
+            
+        }
+
     }, 3000)
 })

@@ -1,17 +1,12 @@
 things to do {
-	style the home page;✅
-	style the calling screen.
-	not be able to join someone when they are offline
+	optimize the online and offline friend checking to fetch with a list instead of a making a request for each friend
 	make it detect disconnect from twilio itself instead of onbeforeunload becaues the pop up is annoying
-	be able to join friends in a room 
-	be able to invite someone and send them a notification
 }
 
 
 doing right now {
 	friends{
-		fetching ✅;
-		calling: TODO;
+	add animations and update the call options div and add loading when joining
 	}
 }
 

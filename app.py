@@ -467,6 +467,17 @@ def get_invs():
         return jsonify({"res":r})
         
 
+@app.route('/get-user-status_user=<targetUser>')
+def getUserStatus(targetUser):
+    return jsonify({"res":status[targetUser]})
+
+
+@app.route('/generate-room-id')
+def generateRoomId():
+    generatedUuid = uuid()
+    print(generatedUuid)
+    return jsonify({"res":generatedUuid})
+
 
 if __name__ == '__main__':
     app.run(host='localhost', debug=True)
