@@ -53,12 +53,12 @@ function connectButtonHandler(event) {
 };
 
 function connect(username, roomChosen) {
-    if(!roomChosen) roomChosen = chosenRoom;
+    if(roomChosen == undefined ) roomChosen = chosenRoom;
     let promise = new Promise((resolve, reject) => {
         // get a token from the back end
         let data;
         
-        fetch('/login/' + chosenRoom, {
+        fetch('/login/' + roomChosen, {
             method: 'POST',
             body: JSON.stringify({'username': username})
         }).then(res => res.json()).then(_data => {

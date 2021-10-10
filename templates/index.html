@@ -27,7 +27,7 @@
                     <input value="{{name}}" type="hidden" name=”username” id="username">
                     <button id="join_leave">Join call</button>
                     <button id="share_screen" disabled>Share screen</button>
-                    <!-- <button id="toggle_chat" disabled>Toggle chat</button> -->
+                    <button id="toggle_chat" disabled>Toggle chat</button>
                 </form>
                 <p style="display: none;" id="count">Disconnected.</p>
                 <div id="root">
@@ -91,6 +91,8 @@
                                 {%endif%}
                                 <span onclick="unfriend('{{friend}}');reRender('{{friend}}')" class="fas fa-user-minus userBtns" id="rm-friend-btn"></span>
                             </div>
+                            <br>
+                            <br>
     
                         {%endfor%}
                         {%if not onlineFriends%}

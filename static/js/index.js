@@ -314,6 +314,10 @@ function reRender(){
                 span3.className = "fas fa-user-minus userBtns"
                 div.appendChild(span3)
                 friendsDiv.appendChild(div)
+                let br = document.createElement("br")
+                friendsDiv.appendChild(br)
+                let br2 = document.createElement("br")
+                friendsDiv.appendChild(br2)
             }
         }
 
@@ -426,5 +430,5 @@ window.addEventListener("load", () => {
                 addInvite(data['room'], data['user'])
             }
         })
-    }, 1500)
+    }, 3000)
 })

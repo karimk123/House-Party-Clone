@@ -6,7 +6,7 @@ from twilio.jwt.access_token.grants import VideoGrant, ChatGrant
 from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
 from flask_mail import Mail, Message
-
+from shortuuid import uuid
 load_dotenv()
 twilio_account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
 twilio_api_key_sid = os.environ.get('TWILIO_API_KEY_SID')
@@ -24,7 +24,6 @@ app.config['MAIL_PASSWORD'] = 'fepzmail123'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
-roomCounter = 0
 
 with open("db/data.json") as fp:
     data = json.load(fp)
@@ -105,7 +104,7 @@ def index():
                 for user in status
                 if user in data[name]['friends'] and status[user] == "online"
             ]
-            data[name]["currentRoom"] = roomCounter
+            data[name]["currentRoom"] = uuid()
             saveJson()
             return render_template(
                 "index.html",
@@ -116,7 +115,7 @@ def index():
                 onlineFriends=onlineFriends,
                 data=data,
                 name=name,
-                chosenRoom=roomCounter
+                chosenRoom=uuid()
             )
         else:
             return render_template("auth.html", r=random.randint(0, 12132))
@@ -206,7 +205,6 @@ def sign_up():
 
 @app.route('/login/<room>', methods=['POST'])
 def login(room):
-    global roomCounter
     username = request.get_json(force=True).get('username')
     if not username:
         abort(401)
@@ -223,7 +221,6 @@ def login(room):
                         twilio_api_key_secret, identity=username)
     token.add_grant(VideoGrant(room=room))
     token.add_grant(ChatGrant(service_sid=conversation.chat_service_sid))
-    roomCounter+=1
     data[username]["currentRoom"] = room
     saveJson()
     return {'token': token.to_jwt().decode(),
