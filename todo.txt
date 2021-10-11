@@ -7,5 +7,6 @@ things to do {
 
 
 doing right now {
-	mute and unmute,close video, open video.
+	close video, open video.
+	show a muted icon on the user div when someone else mutes
 }
