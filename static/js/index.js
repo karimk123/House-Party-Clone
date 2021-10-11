@@ -439,8 +439,10 @@ function addInvite(room, username){
 }
 
 window.addEventListener("load", () => {
+    $("#mute_unmute")[0].addEventListener('click', MuteUnmute);
     $("#join_leave").hide()
     $(shareScreen).hide()
+    $("#mute_unmute").hide()
     setInterval(() => {
         fetch("/get-invs").then((res) => {return res.json()}).then((data) => {
             data = data['res']
@@ -478,3 +480,35 @@ window.addEventListener("load", () => {
 
     }, 3000)
 })
+
+
+
+var muted = false;
+function MuteUnmute(event) {
+    event.preventDefault();
+    
+
+        console.log("pressed mute ")
+        muted = !muted
+        if(muted){
+            $("#mute_unmute i").removeClass("fa-microphone")
+            $("#mute_unmute i").addClass("fa-microphone-slash")
+            $("#mute_unmute").css("width", "initial")
+            room.localParticipant.audioTracks.forEach(track => {
+                track.track.disable();
+            });
+    
+        }
+        else{
+    
+            $("#mute_unmute i").removeClass("fa-microphone-slash")
+            $("#mute_unmute i").addClass("fa-microphone")
+            $("#mute_unmute").css("width", "75px")
+                room.localParticipant.audioTracks.forEach(track => {
+                track.track.enable();
+            });
+    
+        }
+   
+}
+

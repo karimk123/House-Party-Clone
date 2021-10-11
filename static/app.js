@@ -50,8 +50,8 @@ function connectButtonHandler(event) {
         disconnect();
         $(button).hide()
         $(shareScreen).hide()
+        $("#mute_unmute").hide()
         connected = false;
-        shareScreen.innerHTML = 'Share screen';
         shareScreen.disabled = true;
     }
 };
@@ -81,15 +81,18 @@ function connect(username, roomChosen) {
             if(roomChosen != chosenRoom){
             $("#join_leave").show()
             $(shareScreen).show()
+            $("#mute_unmute").show()
             }
               setTimeout(() => {
 
         if($("#container video").length > 1){
             $("#join_leave").show()
             $(shareScreen).show()
+            $("#mute_unmute").show()
         }else{
             $("#join_leave").hide()
             $(shareScreen).hide()
+            $("#mute_unmute").hide()
         }
     },1000) 
             resolve();
@@ -141,9 +144,11 @@ function participantConnected(participant) {
         if($("#container video").length > 1){
             $("#join_leave").show()
             $(shareScreen).show()
+            $("#mute_unmute").show()
         }else{
             $("#join_leave").hide()
             $(shareScreen).hide()
+            $("#mute_unmute").hide()
         }
     },1000)
 };
@@ -157,9 +162,11 @@ setTimeout(() => {
         if($("#container video").length > 1){
             $("#join_leave").show()
             $(shareScreen).show()
+            $("#mute_unmute").show()
         }else{
             $("#join_leave").hide()
             $(shareScreen).hide()
+                $("#mute_unmute").hide()
         }
     },1000)
 };
@@ -218,7 +225,6 @@ function shareScreenHandler() {
         room.localParticipant.unpublishTrack(screenTrack);
         screenTrack.stop();
         screenTrack = null;
-        shareScreen.innerHTML = 'Share screen';
     }
 };
 
