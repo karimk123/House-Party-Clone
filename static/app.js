@@ -125,8 +125,12 @@ function participantConnected(participant) {
     container.appendChild(participantDiv);
 
     participant.tracks.forEach(publication => {
-        if (publication.isSubscribed)
+        if (publication.isSubscribed){
             trackSubscribed(tracksDiv, publication.track);
+           
+
+        }
+         
     });
     participant.on('trackSubscribed', track => trackSubscribed(tracksDiv, track));
     participant.on('trackUnsubscribed', trackUnsubscribed);
@@ -145,6 +149,7 @@ function participantConnected(participant) {
 };
 
 function participantDisconnected(participant) {
+    alertify.success($("#" + participant.sid + " .label:first").text() +" left 😢")
     document.getElementById(participant.sid).remove();
     updateParticipantCount();
 setTimeout(() => {

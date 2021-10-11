@@ -2,13 +2,10 @@ things to do {
 	add cake emoji (🎂) when its someones birthday
 	KARIM: optimize the online and offline friend checking to fetch with a list instead of a making a request for each friend
 	make it detect disconnect from twilio itself instead of onbeforeunload becaues the pop up is annoying
+	make the site responsive on mobile
 }
 
 
 doing right now {
-	friends{
-	add animations and update the call options div and add loading when joining
-	}
-	mute and unmute,
-	close video, open video.
+	mute and unmute,close video, open video.
 }

@@ -414,6 +414,7 @@ if (!isClickInsideElement) {
 }
 });
 function joinUser(targetName){
+    alertify.success("Joining " + targetName)
      $("#call-options").hide()
     $("#allContent").css("opacity", "1")
     fetch("/get-room-code_user=" + targetName).then((res) => {return res.json()}).then((res) => {

@@ -113,11 +113,15 @@ button:focus {
 .participant div video {
     background-color: #eee;
     border: 2px solid #9aff5a;
+    transition: 0.3s;
+    cursor: pointer;
 }
 .participant div video:not(.trackZoomed) {
     width: 240px;
     height: 180px;
     border-radius: 16px;
+    transition: 0.3s;
+    cursor: pointer;
 }
 .participant .label {
 background-color: #ffffff85;
@@ -352,4 +356,27 @@ background-color: #ffffff85;
     display: none;
 
 
+}
+
+#join_leave {
+    background: #ff3c3c;
+    font-size: 20px;
+    text-align: center;
+    padding: 21px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #ff3c3c;
+    border: 3px solid;
+}
+
+#share_screen {
+    font-size: 27px;
+    font-family: 'Poppins';
+    font-weight: 500;
+    box-shadow: 0 0 20px #ff7500;
+    margin-left: 47px;
+    background: #ff7500;
+    border: 2px solid;
+    width: 80px;
+    padding: 10px;
+    border-radius: 20px;
 }
