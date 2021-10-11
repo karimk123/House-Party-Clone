@@ -383,17 +383,26 @@ function reRender(){
 
 var callOptionsOPen = false
 function joinPopUp(username){
-    $("#call-options").show()
-    $("#call-options").css("display", "inherit")
-    $("#allContent").css("opacity", "0.5")
-    callOptionsOPen = true;
-    $("#joinBtn")[0].onclick = () => {
+    // $("#call-options").show()
+    // $("#call-options").css("display", "inherit")
+    // $("#allContent").css("opacity", "0.5")
+    // callOptionsOPen = true;
+    // $("#joinBtn")[0].onclick = () => {
+    //     joinUser(username)
+    // }
+    // $("#inviteHereBtn")[0].onclick = () => {
+    //     inviteUser(username)
+    // }
+    // return
+
+    alertify.confirm('Call Options ya bro', '<img draggable="false" src="https://i.ytimg.com/vi/sxrzdev5l3A/maxresdefault.jpg" style="width:60%;position: relative;left: 50%;transform: translateX(-50%);">', 
+
+    function(){
         joinUser(username)
-    }
-    $("#inviteHereBtn")[0].onclick = () => {
+    },
+    function(){ 
         inviteUser(username)
-    }
-    return
+    }).set('labels', {ok:'Join', cancel:'Invite Here'}).set('closable', true)
     
 }
 document.addEventListener('mousedown', function(event) {
@@ -418,19 +427,19 @@ function inviteUser(username){
 }
 
 function addInvite(room, username){
-    alertify.confirm("Invite", `${username} invited you to join his party!`,
+    alertify.confirm(`${username} invited you!`, `<img draggable="false" src="https://memegenerator.net/img/instances/51043830.jpg" style="width:60%;position: relative;left: 50%;transform: translateX(-50%);">`,
     function(){
         alertify.success('Joining ' + username);
         connect(accName, room)
     },
     function(){
         alertify.error('You rejected the invite');
-    }).set('closable', false).set('movable', false)
+    }).set('closable', false).set('movable', false).set('labels', {ok:'Accept', cancel:'Reject'}).set('closable', true)
 }
 
 window.addEventListener("load", () => {
-    // $("#join_leave").hide()
-    // $(shareScreen).hide()
+    $("#join_leave").hide()
+    $(shareScreen).hide()
     setInterval(() => {
         fetch("/get-invs").then((res) => {return res.json()}).then((data) => {
             data = data['res']

@@ -77,6 +77,7 @@ function connect(username, roomChosen) {
             connected = true;
             updateParticipantCount();
             connectChat(data.token, data.conversation_sid);
+        
             if(roomChosen != chosenRoom){
             $("#join_leave").show()
             $(shareScreen).show()
