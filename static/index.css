@@ -116,6 +116,18 @@ button:focus {
     transition: 0.3s;
     cursor: pointer;
 }
+.participant div i {
+    background: #b4b4b499;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    top: -20px;
+    left: -224px;
+    font-size: 18px;
+    color: #ff0808;
+    box-shadow: inset 0 0 5px #000000e0;
+    margin-right: -40px;
+}
 .participant div video:not(.trackZoomed) {
     width: 240px;
     height: 180px;
@@ -219,7 +231,9 @@ background-color: #ffffff85;
     border-radius:20px;
     cursor:pointer;
     font-family: 'Poppins', sans-serif;
-    width: 340px !important;
+    /* width: 340px !important; */
+    min-width: 400px;    
+    width:fit-content; ;
 }
 .user .pfp{
     height: 39px
@@ -271,8 +285,8 @@ background-color: #ffffff85;
 }
 
 #call-btn, #rm-friend-btn {
-    left: 50% !important;
-    top:-5px;
+    left: 41% !important;
+    top: -5px;
     margin-right: 10px;
 }
 
@@ -317,8 +331,8 @@ background-color: #ffffff85;
     font-size: 13px;
     position: relative;
     top: -4px;
-    left: -11px;
-    margin-right: -27px;
+    left: -2%;
+    margin-right: -18px;
     
 }
 
@@ -377,11 +391,14 @@ background-color: #ffffff85;
     background: #ff7500;
     border: 2px solid;
     width: 80px;
-    padding: 10px;
-    border-radius: 20px;
+    padding: 10px; border-radius: 20px; 
+
 }
 
-
+#share_screen img {
+    height: 54px;
+    margin-bottom: -14px;
+}
 #mute_unmute {
         background: #fd5b5b;
     font-size: 25px;

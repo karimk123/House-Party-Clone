@@ -11,7 +11,6 @@ https://hungarytoday.hu/wp-content/uploads/2020/05/84261763_657262308148775_2968
 https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0S32AafiL9vfbhA05bnsFWU6VdhJ6k78tJQ&usqp=CAU
 https://i2.wp.com/comicsandmemes.com/wp-content/uploads/blank-meme-template-026-success-baby.jpg?fit=300%2C198&ssl=1
 https://i.pinimg.com/originals/37/7a/bd/377abd9050bcde6ac06358dd6e15b59d.jpg
-https://relatably.com/m/img/funny-blank-memes/cd9995d067176809b6a1d45fb952f775.jpg
 https://dogtrainingobedienceschool.com/pic/5230285_full-youtube-spongebob-the-hooks-quotes-new-spongebob-memes-template-memes-mocking-memes-blank-memes.png
 https://w0.peakpx.com/wallpaper/228/341/HD-wallpaper-amogus-meme-thumbnail.jpg
 https://i.kym-cdn.com/photos/images/newsfeed/001/956/029/c8d.png
@@ -19,7 +18,7 @@ https://i.kym-cdn.com/entries/icons/original/000/012/781/upload.png
 https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/127535281/original/d17268cb71d97c8dfdc1d87ec9e8358fc83f2dd2/meme-style-portraits-like-spooderman.png
 */
 
-const memes = ['https://i.imgflip.com/4/oqii0.jpg', 'https://i.ytimg.com/vi/gjDFXb52e1c/mqdefault.jpg', 'https://i.ytimg.com/vi/sxrzdev5l3A/maxresdefault.jpg', 'https://www.letseatcake.com/wp-content/uploads/2021/04/wholesome-memes-26.jpg', 'https://ae01.alicdn.com/kf/HTB1id4nOFXXXXc1XXXXq6xXFXXXK/Internet-Meme-Smug-Frog-Pepe-Lapel-Pin-Sad-Dank-Collector.jpg_Q90.jpg_.webp', 'https://static.stacker.com/s3fs-public/styles/slide_desktop/s3/2019-03/Screen%20Shot%202019-03-14%20at%2011.28.25%20AM.png', 'https://www.meme-arsenal.com/memes/06941815feea7feaa11cc94d8b37f89e.jpg', 'https://hungarytoday.hu/wp-content/uploads/2020/05/84261763_657262308148775_2968667943157628928_o-e1589799341315.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0S32AafiL9vfbhA05bnsFWU6VdhJ6k78tJQ&usqp=CAU', 'https://i2.wp.com/comicsandmemes.com/wp-content/uploads/blank-meme-template-026-success-baby.jpg?fit=300%2C198&ssl=1', 'https://i.pinimg.com/originals/37/7a/bd/377abd9050bcde6ac06358dd6e15b59d.jpg', 'https://relatably.com/m/img/funny-blank-memes/cd9995d067176809b6a1d45fb952f775.jpg', 'https://dogtrainingobedienceschool.com/pic/5230285_full-youtube-spongebob-the-hooks-quotes-new-spongebob-memes-template-memes-mocking-memes-blank-memes.png', 'https://w0.peakpx.com/wallpaper/228/341/HD-wallpaper-amogus-meme-thumbnail.jpg', 'https://i.kym-cdn.com/photos/images/newsfeed/001/956/029/c8d.png', 'https://i.kym-cdn.com/entries/icons/original/000/012/781/upload.png', 'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/127535281/original/d17268cb71d97c8dfdc1d87ec9e8358fc83f2dd2/meme-style-portraits-like-spooderman.png']
+const memes = ['https://i.imgflip.com/4/oqii0.jpg', 'https://i.ytimg.com/vi/gjDFXb52e1c/mqdefault.jpg', 'https://i.ytimg.com/vi/sxrzdev5l3A/maxresdefault.jpg', 'https://www.letseatcake.com/wp-content/uploads/2021/04/wholesome-memes-26.jpg', 'https://ae01.alicdn.com/kf/HTB1id4nOFXXXXc1XXXXq6xXFXXXK/Internet-Meme-Smug-Frog-Pepe-Lapel-Pin-Sad-Dank-Collector.jpg_Q90.jpg_.webp', 'https://static.stacker.com/s3fs-public/styles/slide_desktop/s3/2019-03/Screen%20Shot%202019-03-14%20at%2011.28.25%20AM.png', 'https://www.meme-arsenal.com/memes/06941815feea7feaa11cc94d8b37f89e.jpg', 'https://hungarytoday.hu/wp-content/uploads/2020/05/84261763_657262308148775_2968667943157628928_o-e1589799341315.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0S32AafiL9vfbhA05bnsFWU6VdhJ6k78tJQ&usqp=CAU', 'https://i2.wp.com/comicsandmemes.com/wp-content/uploads/blank-meme-template-026-success-baby.jpg?fit=300%2C198&ssl=1', 'https://i.pinimg.com/originals/37/7a/bd/377abd9050bcde6ac06358dd6e15b59d.jpg',  'https://dogtrainingobedienceschool.com/pic/5230285_full-youtube-spongebob-the-hooks-quotes-new-spongebob-memes-template-memes-mocking-memes-blank-memes.png', 'https://w0.peakpx.com/wallpaper/228/341/HD-wallpaper-amogus-meme-thumbnail.jpg', 'https://i.kym-cdn.com/photos/images/newsfeed/001/956/029/c8d.png', 'https://i.kym-cdn.com/entries/icons/original/000/012/781/upload.png', 'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/127535281/original/d17268cb71d97c8dfdc1d87ec9e8358fc83f2dd2/meme-style-portraits-like-spooderman.png']
     window.addEventListener('load', function(e) {
   if (navigator.onLine) {
     setStatus("online")
@@ -305,13 +304,28 @@ function reRender(){
                    
             //        div.innerHTML += '<i class="fas fa-circle" aria-hidden="true"></i>'
             //    }
+
+            if(data[username]['status'] == "online"){
+                let circle = document.createElement("i")
+                        circle.className = "fas fa-circle"
+                        div.appendChild(circle)
+            }
+            else {
+                  let circle = document.createElement("i")
+                    circle.className = "fas fa-circle"
+                    circle.style.color = "red"
+                    div.appendChild(circle)
+            }
             let span1 = document.createElement("span")
                span1.innerText = username
+               if(data[username]['isbd'] == true){
+                   span1.innerText = username + " 🎂"
+               }
                div.appendChild(span1)
                 if(data[username]['status'] == "online"){
-                    let circle = document.createElement("i")
-                    circle.className = "fas fa-circle"
-                    div.appendChild(circle)
+                    // let circle = document.createElement("i")
+                    // circle.className = "fas fa-circle"
+                    // div.appendChild(circle)
                     let span2 = document.createElement("span")
                     span2.id = "call-btn"
                     span2.className = "fas fa-phone-alt userBtns"
@@ -321,10 +335,10 @@ function reRender(){
                     div.appendChild(span2)
                 }
                 else {
-                     let circle = document.createElement("i")
-                    circle.className = "fas fa-circle"
-                    circle.style.color = "red"
-                    div.appendChild(circle)
+                    //  let circle = document.createElement("i")
+                    // circle.className = "fas fa-circle"
+                    // circle.style.color = "red"
+                    // div.appendChild(circle)
                 }
                
                
@@ -373,6 +387,9 @@ function reRender(){
                 // }
                let span1 = document.createElement("span")
                span1.innerText = username
+               if(data[username]['isbd'] == true){
+                    span1.innerText = username + " 🎂"
+                }
                div.appendChild(span1)
                let span2 = document.createElement("span")
                span2.onclick = () => {
@@ -475,30 +492,52 @@ window.addEventListener("load", () => {
   friends = $("#friends-div .user")
             
         // console.log(friends.length);
-        for (let i = 0; i < friends.length; i++) {
-            const element = friends[i];
+        // for (let i = 0; i < friends.length; i++) {
+        //     const element = friends[i];
             
-            friendName = element.getElementsByTagName("span")[0].innerText
-            // console.log(friendName)
+        //     friendName = element.getElementsByTagName("span")[0].innerText
+        //     // console.log(friendName)
             
-            fetch("/get-user-status_user=" + friendName).then((data) => {
-                return data.json()
-            }).then((res) => {
-                res = res['res']
+        //     fetch("/get-user-status_user=" + friendName).then((data) => {
+        //         return data.json()
+        //     }).then((res) => {
+        //         res = res['res']
                 
-                if(res == "online"){
-                    element.getElementsByTagName("i")[0].style.color = "#36E136"
-                    reRender()
-                }
-                else if(res == "offline"){
-                    element.getElementsByTagName("i")[0].style.color = "red"
-                    reRender()
-                }
-            })
+        //         if(res == "online"){
+        //             element.getElementsByTagName("i")[0].style.color = "#36E136"
+        //             reRender()
+        //         }
+        //         else if(res == "offline"){
+        //             element.getElementsByTagName("i")[0].style.color = "red"
+        //             reRender()
+        //         }
+        //     })
+ 
+        // }
 
-
-            
+        let friendNames = []
+        for(let i = 0; i <friends.length;i++){
+            const element = friends[i];
+                
+            friendName = element.getElementsByTagName("span")[0].innerText.replace(" 🎂", "")
+            friendNames.push(friendName);
         }
+        fetch("/get-user-status-list_list=" + friendNames.toString()).then((res) =>  res.json()).then((res) => {
+            for (let i = 0; i < Object.keys(res).length; i++) {
+                const currFriend = Object.keys(res)[i];
+                if(res[currFriend] == "online"){
+                    friends[i].getElementsByTagName("i")[0].style.color = "#36E136"
+                    reRender()
+                }
+                else if(res[currFriend] == "offline"){
+                    friends[i].getElementsByTagName("i")[0].style.color = "red"
+                    reRender()
+                }
+                
+                
+            }     
+            
+        })
 
     }, 3000)
 })
@@ -519,6 +558,7 @@ function MuteUnmute(event) {
             room.localParticipant.audioTracks.forEach(track => {
                 track.track.disable();
             });
+                    $("#local div:first").append('<i class="fas fa-microphone-slash"></i>')
     
         }
         else{
@@ -529,6 +569,7 @@ function MuteUnmute(event) {
                 room.localParticipant.audioTracks.forEach(track => {
                 track.track.enable();
             });
+            $("#local div i").remove()
     
         }
    

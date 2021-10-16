@@ -130,7 +130,7 @@ function participantConnected(participant) {
     participant.tracks.forEach(publication => {
         if (publication.isSubscribed){
             trackSubscribed(tracksDiv, publication.track);
-           
+            
 
         }
          
@@ -154,7 +154,7 @@ function participantConnected(participant) {
 };
 
 function participantDisconnected(participant) {
-    alertify.success($("#" + participant.sid + " .label:first").text() +" left 😢")
+    alertify.error($("#" + participant.sid + " .label:first").text() +" left 😢")
     document.getElementById(participant.sid).remove();
     updateParticipantCount();
 setTimeout(() => {
@@ -175,6 +175,16 @@ function trackSubscribed(div, track) {
     let trackElement = track.attach();
     trackElement.addEventListener('click', () => { zoomTrack(trackElement); });
     div.appendChild(trackElement);
+    let trackParent = trackElement.parentNode
+
+    track.on("enabled" , () => {
+       trackParent.getElementsByTagName("i")[0].remove()
+
+    })
+    track.on("disabled", () => { 
+        trackParent.innerHTML += '<i class="fas fa-microphone-slash"></i>'
+        
+    })
 };
 
 function trackUnsubscribed(track) {
@@ -216,15 +226,16 @@ function shareScreenHandler() {
             room.localParticipant.publishTrack(screenTrack);
             screenTrack.mediaStreamTrack.onended = () => { shareScreenHandler() };
             console.log(screenTrack);
-            shareScreen.innerHTML = 'Stop sharing';
+            shareScreen.innerHTML = '<img draggable="false" src="/static/images/close_share_screen.png"/>';
         }).catch(() => {
-            alert('Could not share the screen.')
+            alertify.error('Could not share the screen.')
         });
     }
     else {
         room.localParticipant.unpublishTrack(screenTrack);
         screenTrack.stop();
         screenTrack = null;
+        shareScreen.innerHTML = '<i class="fas fa-desktop"></i>'
     }
 };
 

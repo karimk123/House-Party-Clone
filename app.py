@@ -158,8 +158,8 @@ def sign_up():
         name = request.form['name']
         pw = request.form['pw']
         email = request.form['email']
-        if len(name) > 9 or len(pw) > 50:
-            flash("Username max length should be 8 and password max length is 50!", category="error")
+        if len(name) > 10 or len(pw) > 50:
+            flash("Username max length should be 9 and password max length is 50!", category="error")
             return redirect("/")
         birthday = request.form['birthday']
         if name not in data.keys():
@@ -402,7 +402,8 @@ def get_friend_requests():
         for user in data[name]['recived']:
             res[user] = {
                 "status":status[user],
-                "pfp":data[user]['pfp']
+                "pfp":data[user]['pfp'],
+                "isbd":data[friend]['birthday'].replace("-", "|", 1).split("|")[1] == str(datetime.datetime.now().strftime("%m-%d"))
                 }
         return jsonify({"res":res})
     return "False"
@@ -429,7 +430,9 @@ def get_friends():
         for friend in data[name]['friends']:
             res[friend] = {
                 "status":status[friend],
-                "pfp":data[friend]['pfp']
+                "pfp":data[friend]['pfp'],
+                "isbd":data[friend]['birthday'].replace("-", "|", 1).split("|")[1] == str(datetime.datetime.now().strftime("%m-%d"))
+
                 }
         return jsonify({"res":res})
     return "False"
@@ -437,6 +440,7 @@ def get_friends():
 
 @app.route('/get-room-code_user=<targetName>')
 def getRoomCode(targetName):
+    targetName = targetName.replace(" 🎂", "")
 
     return jsonify({"code":data[targetName]["currentRoom"]})
 
@@ -469,7 +473,17 @@ def get_invs():
 
 @app.route('/get-user-status_user=<targetUser>')
 def getUserStatus(targetUser):
+    targetUser = targetUser.replace(" 🎂", "")
     return jsonify({"res":status[targetUser]})
+
+@app.route('/get-user-status-list_list=<friendList>')
+def getUserStatusList(friendList):
+    friendList = friendList.split(",")
+    res = {}
+    for friend in friendList:
+        res[friend] =  status[friend]
+
+    return jsonify(res) 
 
 
 @app.route('/generate-room-id')

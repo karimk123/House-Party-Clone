@@ -1,16 +1,32 @@
 {
+    "bd_test": {
+        "birthday": "2007-10-16",
+        "currentRoom": "PsST2Hkrm9yzj4v42qF5Sg",
+        "email": "karimhsdsad151515@gmail.com",
+        "friends": [
+            "karim",
+            "kar1m"
+        ],
+        "invite": "",
+        "joined": "16/10/2021",
+        "name": "bd_test",
+        "notifications": [],
+        "pfp": "static/images/default.jpg",
+        "pw": "202cb962ac59075b964b07152d234b70",
+        "recived": [],
+        "sent": [],
+        "settings": {}
+    },
     "kar1m": {
         "birthday": "2007-04-25",
-        "currentRoom": "8i4gPfCByeAahRibGvkrG2",
+        "currentRoom": "LkppJGtfJJUcFvvtRbdw8R",
         "email": "karimh151515@gmail.com",
         "friends": [
             "tester",
-            "karim"
+            "karim",
+            "bd_test"
         ],
-        "invite": {
-            "room": "ifVg4ULKC8dGMGniH3dGhj",
-            "user": "karim"
-        },
+        "invite": "",
         "joined": "20/09/2021",
         "name": "kar1m",
         "notifications": [],
@@ -22,11 +38,12 @@
     },
     "karim": {
         "birthday": "2007-06-14",
-        "currentRoom": "KtXWLjoc7xKoXcpyUZNMcL",
+        "currentRoom": "9ayqxzU32MyjR5nNn2zqmV",
         "email": "karimkhalifa110@gmail.com",
         "friends": [
             "tester",
-            "kar1m"
+            "kar1m",
+            "bd_test"
         ],
         "invite": "",
         "joined": "20/09/2021",
@@ -40,7 +57,7 @@
     },
     "tester": {
         "birthday": "2021-08-31",
-        "currentRoom": "bJeS8VnoCgz2cpzuJEG9sY",
+        "currentRoom": "9ayqxzU32MyjR5nNn2zqmV",
         "email": "tomkaka120@gmail.com",
         "friends": [
             "kar1m",
