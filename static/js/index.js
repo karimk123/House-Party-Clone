@@ -479,6 +479,7 @@ function addInvite(room, username){
 
 window.addEventListener("load", () => {
     $("#mute_unmute")[0].addEventListener('click', MuteUnmute);
+    $("#video_toggle")[0].addEventListener('click', ToggleVideo);
     $("#join_leave").hide()
     $(shareScreen).hide()
     $("#mute_unmute").hide()
@@ -570,6 +571,36 @@ function MuteUnmute(event) {
                 track.track.enable();
             });
             $("#local div i").remove()
+    
+        }
+   
+}
+
+var videoOff = false;
+function ToggleVideo(event) {
+    event.preventDefault();
+    
+
+        videoOff = !videoOff;
+        if(videoOff){
+            $("#video_toggle i").hide()
+            $("#video_toggle").append("<img src='/static/images/close_video.png'/>")
+            // $("#video_toggle").css("width", "initial")
+            room.localParticipant.videoTracks.forEach(track => {
+                track.track.disable();
+            });
+                    // $("#local div:first").append('<i class="fas fa-microphone-slash"></i>')
+    
+        }
+        else{
+    
+            $("#video_toggle img").remove()
+            $("#video_toggle i").show()
+            // $("#video_toggle").css("width", "75px")
+                room.localParticipant.videoTracks.forEach(track => {
+                track.track.enable();
+            });
+            // $("#local div i").remove()
     
         }
    
