@@ -51,6 +51,7 @@ function connectButtonHandler(event) {
         $(button).hide()
         $(shareScreen).hide()
         $("#mute_unmute").hide()
+        $("#toggle_video").hide()
         connected = false;
         shareScreen.disabled = true;
     }
@@ -82,6 +83,7 @@ function connect(username, roomChosen) {
             $("#join_leave").show()
             $(shareScreen).show()
             $("#mute_unmute").show()
+        $("#toggle_video").show()
             }
               setTimeout(() => {
 
@@ -89,10 +91,12 @@ function connect(username, roomChosen) {
             $("#join_leave").show()
             $(shareScreen).show()
             $("#mute_unmute").show()
+        $("#toggle_video").show()
         }else{
             $("#join_leave").hide()
             $(shareScreen).hide()
             $("#mute_unmute").hide()
+        $("#toggle_video").hide()
         }
     },1000) 
             resolve();
@@ -145,9 +149,11 @@ function participantConnected(participant) {
             $("#join_leave").show()
             $(shareScreen).show()
             $("#mute_unmute").show()
+        $("#toggle_video").show()
         }else{
             $("#join_leave").hide()
             $(shareScreen).hide()
+        $("#toggle_video").hide()
             $("#mute_unmute").hide()
         }
     },1000)
@@ -163,10 +169,12 @@ setTimeout(() => {
             $("#join_leave").show()
             $(shareScreen).show()
             $("#mute_unmute").show()
+        $("#toggle_video").show()
         }else{
             $("#join_leave").hide()
             $(shareScreen).hide()
                 $("#mute_unmute").hide()
+                        $("#toggle_video").hide()
         }
     },1000)
 };

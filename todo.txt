@@ -7,4 +7,5 @@ things to do {
 doing right now {
 	close video, open video.
 	show video closed icon when someones closes video
+	tell the user to accept the mic and video when not accepted
 }
