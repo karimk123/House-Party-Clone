@@ -1,5 +1,5 @@
 import os, json, random, datetime, time, hashlib
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from flask import *
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import VideoGrant, ChatGrant
@@ -7,10 +7,10 @@ from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
 from flask_mail import Mail, Message
 from shortuuid import uuid
-load_dotenv()
-twilio_account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
-twilio_api_key_sid = os.environ.get('TWILIO_API_KEY_SID')
-twilio_api_key_secret = os.environ.get('TWILIO_API_KEY_SECRET')
+# load_dotenv()
+twilio_account_sid = "ACdcc4c30adf8b6862f7116d706ee63926"
+twilio_api_key_sid = "SK0aa583cb7be367dd489fdfaa413fe028"
+twilio_api_key_secret = "eLYs8ji25nuxf50LIDanVGJrPrUB0mzj"
 twilio_client = Client(twilio_api_key_sid, twilio_api_key_secret,
                        twilio_account_sid)
 
@@ -223,7 +223,7 @@ def login(room):
     token.add_grant(ChatGrant(service_sid=conversation.chat_service_sid))
     data[username]["currentRoom"] = room
     saveJson()
-    return {'token': token.to_jwt().decode(),
+    return {'token': token.to_jwt(),
             'conversation_sid': conversation.sid}
 
 
@@ -494,6 +494,6 @@ def generateRoomId():
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', debug=True)
+    app.run(host='0.0.0.0', port=8080 ,debug=True)
 
 #Made by Fepz (Kar1m, Kimo)

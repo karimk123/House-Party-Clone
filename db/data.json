@@ -1,4 +1,26 @@
 {
+    "Ahmed": {
+        "birthday": "2021-10-21",
+        "currentRoom": "kr93BwzKYTpfw3Qh5cyEsW",
+        "email": "didodiving@gmail.com",
+        "friends": [
+            "karim"
+        ],
+        "invite": {
+            "room": "GYDTzAytkF9NXc2j6cijp7",
+            "user": "karim"
+        },
+        "joined": "21/10/2021",
+        "name": "Ahmed",
+        "notifications": [],
+        "pfp": "static/images/default.jpg",
+        "pw": "ec7b154e237364cd529195337e809195",
+        "recived": [
+            "kar1m"
+        ],
+        "sent": [],
+        "settings": {}
+    },
     "bd_test": {
         "birthday": "2007-10-16",
         "currentRoom": "PsST2Hkrm9yzj4v42qF5Sg",
@@ -19,7 +41,7 @@
     },
     "kar1m": {
         "birthday": "2007-04-25",
-        "currentRoom": "LkppJGtfJJUcFvvtRbdw8R",
+        "currentRoom": "fstef9tSVgoEwTz5veu5cj",
         "email": "karimh151515@gmail.com",
         "friends": [
             "tester",
@@ -33,17 +55,20 @@
         "pfp": "static/images/default.jpg",
         "pw": "202cb962ac59075b964b07152d234b70",
         "recived": [],
-        "sent": [],
+        "sent": [
+            "Ahmed"
+        ],
         "settings": {}
     },
     "karim": {
         "birthday": "2007-06-14",
-        "currentRoom": "YucjKd9gMe5YRtV3BhmTRV",
+        "currentRoom": "CWDa2xsenWuw4AgHcwebx5",
         "email": "karimkhalifa110@gmail.com",
         "friends": [
             "tester",
             "kar1m",
-            "bd_test"
+            "bd_test",
+            "Ahmed"
         ],
         "invite": "",
         "joined": "20/09/2021",

@@ -483,7 +483,7 @@ window.addEventListener("load", () => {
     $("#join_leave").hide()
     $(shareScreen).hide()
     $("#mute_unmute").hide()
-    $("#toggle_video").hide()
+    $("#video_toggle").hide()
     setInterval(() => {
         fetch("/get-invs").then((res) => {return res.json()}).then((data) => {
             data = data['res']
