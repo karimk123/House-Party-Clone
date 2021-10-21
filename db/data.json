@@ -39,6 +39,23 @@
         "sent": [],
         "settings": {}
     },
+    "firefox": {
+        "birthday": "2021-10-06",
+        "currentRoom": "WA7sp7SEAUQGvqkP3EUyfR",
+        "email": "sdfe@sef.com",
+        "friends": [
+            "karim"
+        ],
+        "invite": "",
+        "joined": "21/10/2021",
+        "name": "firefox",
+        "notifications": [],
+        "pfp": "static/images/default.jpg",
+        "pw": "202cb962ac59075b964b07152d234b70",
+        "recived": [],
+        "sent": [],
+        "settings": {}
+    },
     "kar1m": {
         "birthday": "2007-04-25",
         "currentRoom": "fstef9tSVgoEwTz5veu5cj",
@@ -62,13 +79,14 @@
     },
     "karim": {
         "birthday": "2007-06-14",
-        "currentRoom": "CWDa2xsenWuw4AgHcwebx5",
+        "currentRoom": "idPxYUMXoUV337viuaCYRa",
         "email": "karimkhalifa110@gmail.com",
         "friends": [
             "tester",
             "kar1m",
             "bd_test",
-            "Ahmed"
+            "Ahmed",
+            "firefox"
         ],
         "invite": "",
         "joined": "20/09/2021",
@@ -82,7 +100,7 @@
     },
     "tester": {
         "birthday": "2021-08-31",
-        "currentRoom": "gBRJ8AKypaGmX6ubNN5Akn",
+        "currentRoom": "idPxYUMXoUV337viuaCYRa",
         "email": "tomkaka120@gmail.com",
         "friends": [
             "kar1m",

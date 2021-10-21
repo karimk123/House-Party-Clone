@@ -580,6 +580,7 @@ function MuteUnmute(event) {
 var videoOff = false;
 function ToggleVideo(event) {
     event.preventDefault();
+    console.log("pressed toggle video")
     
 
         videoOff = !videoOff;
@@ -590,6 +591,7 @@ function ToggleVideo(event) {
             room.localParticipant.videoTracks.forEach(track => {
                 track.track.disable();
             });
+            $("#local div video")[0].pause()
                     // $("#local div:first").append('<i class="fas fa-microphone-slash"></i>')
     
         }
@@ -598,9 +600,10 @@ function ToggleVideo(event) {
             $("#video_toggle img").remove()
             $("#video_toggle i").show()
             // $("#video_toggle").css("width", "75px")
-                room.localParticipant.videoTracks.forEach(track => {
+            room.localParticipant.videoTracks.forEach(track => {
                 track.track.enable();
             });
+            $("#local div video")[0].play()
             // $("#local div i").remove()
     
         }

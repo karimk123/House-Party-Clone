@@ -51,7 +51,7 @@ function connectButtonHandler(event) {
         $(button).hide()
         $(shareScreen).hide()
         $("#mute_unmute").hide()
-        $("#toggle_video").hide()
+        $("#video_toggle").hide()
         connected = false;
         shareScreen.disabled = true;
     }
@@ -83,7 +83,7 @@ function connect(username, roomChosen) {
             $("#join_leave").show()
             $(shareScreen).show()
             $("#mute_unmute").show()
-        $("#toggle_video").show()
+        $("#video_toggle").show()
             }
               setTimeout(() => {
 
@@ -91,12 +91,12 @@ function connect(username, roomChosen) {
             $("#join_leave").show()
             $(shareScreen).show()
             $("#mute_unmute").show()
-        $("#toggle_video").show()
+        $("#video_toggle").show()
         }else{
             $("#join_leave").hide()
             $(shareScreen).hide()
             $("#mute_unmute").hide()
-        $("#toggle_video").hide()
+        $("#video_toggle").hide()
         }
     },1000) 
             resolve();
@@ -137,6 +137,8 @@ function participantConnected(participant) {
             
 
         }
+
+
          
     });
     participant.on('trackSubscribed', track => trackSubscribed(tracksDiv, track));
@@ -149,11 +151,11 @@ function participantConnected(participant) {
             $("#join_leave").show()
             $(shareScreen).show()
             $("#mute_unmute").show()
-        $("#toggle_video").show()
+        $("#video_toggle").show()
         }else{
             $("#join_leave").hide()
             $(shareScreen).hide()
-        $("#toggle_video").hide()
+        $("#video_toggle").hide()
             $("#mute_unmute").hide()
         }
     },1000)
@@ -169,12 +171,12 @@ setTimeout(() => {
             $("#join_leave").show()
             $(shareScreen).show()
             $("#mute_unmute").show()
-        $("#toggle_video").show()
+        $("#video_toggle").show()
         }else{
             $("#join_leave").hide()
             $(shareScreen).hide()
                 $("#mute_unmute").hide()
-                        $("#toggle_video").hide()
+                        $("#video_toggle").hide()
         }
     },1000)
 };
@@ -186,11 +188,14 @@ function trackSubscribed(div, track) {
     let trackParent = trackElement.parentNode
 
     track.on("enabled" , () => {
-       trackParent.getElementsByTagName("i")[0].remove()
-
+        if(track.kind == "audio"){
+            trackParent.getElementsByTagName("i")[0].remove()
+        }
     })
     track.on("disabled", () => { 
-        trackParent.innerHTML += '<i class="fas fa-microphone-slash"></i>'
+        if(track.kind == "audio"){
+            $(trackParent).append('<i class="fas fa-microphone-slash"></i>')
+        }
         
     })
 };
@@ -224,6 +229,9 @@ function disconnect() {
     fetch("/get-room-id").then((res)=>{return res.json()}).then((res)=>{
         connect(accName, res["res"])
     })
+    $("#local div video")[0].play()
+    $("#video_toggle img").remove()
+    $("#video_toggle i").show()
 };
 
 function shareScreenHandler() {

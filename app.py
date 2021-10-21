@@ -403,7 +403,7 @@ def get_friend_requests():
             res[user] = {
                 "status":status[user],
                 "pfp":data[user]['pfp'],
-                "isbd":data[friend]['birthday'].replace("-", "|", 1).split("|")[1] == str(datetime.datetime.now().strftime("%m-%d"))
+                "isbd":data[user]['birthday'].replace("-", "|", 1).split("|")[1] == str(datetime.datetime.now().strftime("%m-%d"))
                 }
         return jsonify({"res":res})
     return "False"
@@ -494,6 +494,7 @@ def generateRoomId():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080 ,debug=True)
+    app.run(host='localhost', port=8080 ,debug=True)
+    # app.run(host='0.0.0.0', port=8080 ,debug=True)
 
 #Made by Fepz (Kar1m, Kimo)
