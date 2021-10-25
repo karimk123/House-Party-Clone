@@ -81,8 +81,9 @@
                    
                 </div>
                 <hr>
-                <label for='pfp-input'><div class="user">
+                <label id="pfp-input-label" for='pfp-input'><div class="user">
                     <img title="Change profile picture" id="my-pfp" draggable="false" class="pfp" src="{{data[name]['pfp']}}">
+                    <i  class="fas fa-camera"></i>
                     <!-- <i class="fas fa-circle"></i> -->
                     <span>{{name}} (You)</span>
                 </div></label>
@@ -92,7 +93,7 @@
                         {%for friend in onlineFriends%}
     
                             <div class="user">
-                                <img draggable="false" class="pfp" src="/{{data[friend]['pfp']}}">
+                                <img draggable="false" class="pfp" src="{{data[friend]['pfp']}}">
                                 <i class="fas fa-circle"></i>
                                 <span>{{friend}}</span>
                                 {%if friend not in onlineFriends%}

@@ -19,7 +19,8 @@ body {
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
-    overflow: overlay;
+    /* overflow: overlay; */
+    overflow: hidden; /*? THIS COULD CAUSE SOME PROBLEMS, if it does just uncomment the line above*/
 }
 
 ::-webkit-scrollbar {
@@ -129,8 +130,10 @@ button:focus {
     margin-right: -40px;
 }
 .participant div video:not(.trackZoomed) {
-    width: 240px;
-    height: 180px;
+    /* width: 240px;
+    height: 180px; */
+    width: 70%;
+    height: 100%;
     border-radius: 16px;
     transition: 0.3s;
     cursor: pointer;
@@ -222,7 +225,7 @@ background-color: #ffffff85;
     position: fixed;
     top: 10px;
     left: 10px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .user{
@@ -230,14 +233,22 @@ background-color: #ffffff85;
     background-color: #F7F7F7;
     padding:10px 20px;
     border-radius:20px;
-    cursor:pointer;
+    /* cursor:pointer; */
     font-family: 'Poppins', sans-serif;
     /* width: 340px !important; */
     min-width: 400px;    
     width:fit-content; ;
 }
+.user span{
+    cursor: pointer;
+}
 .user .pfp{
-    height: 39px
+    height: 39px;
+    border-radius: 50%;
+    width: 39px;
+    object-fit: cover;
+    background: white;
+    box-shadow: 0 0 8px #00000021;
 }
 
 
@@ -429,4 +440,30 @@ background-color: #ffffff85;
 #video_toggle img {
     height: 36px;
     margin-bottom: -5.8px;
+}
+
+#my-pfp {
+        height: 45px;
+        width: 45px;
+        opacity: 0.7;
+}
+
+
+#pfp-input-label .fa-camera {
+        position: absolute;
+    top: 123.6px;
+    left: 50px;
+    font-size: 25px;
+    color: #404040;
+    text-shadow: 0 0 5px #00000061;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+
+#friends-list::-webkit-scrollbar-thumb{
+    background-color: #cbcbcb;
+}
+#friends-list::-webkit-scrollbar{
+    width: 7px;
 }

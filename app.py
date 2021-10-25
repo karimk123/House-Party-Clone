@@ -211,8 +211,11 @@ def change_pfp():
         if auth(name, pw):
             pfp = request.files['pfp']
             fileName, ext = os.path.splitext(pfp.filename)
-            if data[name]['pfp'][1:] != "static/images/default.jpg":
-                os.remove(data[name]['pfp'][1:])
+            if data[name]['pfp'][1:] != "static/images/default.jpg" and "images/" not in data[name]['pfp']:
+                if data[name]['pfp'][0] == "/":
+                    os.remove(data[name]['pfp'][1:])
+                else:
+                    os.remove(data[name]['pfp'])
             pfp.save("static/pfps/" + name + ext)
             data[name]['pfp'] = "/static/pfps/" + name + ext
             saveJson()

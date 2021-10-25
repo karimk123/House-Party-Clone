@@ -79,7 +79,7 @@
     },
     "karim": {
         "birthday": "2007-06-14",
-        "currentRoom": "XNcSzbsk3zjsuL29iwBthK",
+        "currentRoom": "9SrpzpcdqEZ4N6xVX2GFuu",
         "email": "karimkhalifa110@gmail.com",
         "friends": [
             "tester",
@@ -92,7 +92,7 @@
         "joined": "20/09/2021",
         "name": "karim",
         "notifications": [],
-        "pfp": "static/images/default.jpg",
+        "pfp": "/static/pfps/karim.png",
         "pw": "202cb962ac59075b964b07152d234b70",
         "recived": [],
         "sent": [],
