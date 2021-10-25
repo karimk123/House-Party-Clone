@@ -81,6 +81,12 @@
                    
                 </div>
                 <hr>
+                <label for='pfp-input'><div class="user">
+                    <img title="Change profile picture" id="my-pfp" draggable="false" class="pfp" src="{{data[name]['pfp']}}">
+                    <!-- <i class="fas fa-circle"></i> -->
+                    <span>{{name}} (You)</span>
+                </div></label>
+                <input type="file" onchange="changePfp(this.files[0])" style="display:none;" id="pfp-input">
                 <div id='friends-div'>
                     <h4>Friends</h4>
                         {%for friend in onlineFriends%}

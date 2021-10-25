@@ -183,7 +183,7 @@ def sign_up():
                 "recived":[],
                 "sent":[],
                 "currentRoom": "--",
-                "invite":""
+                "invite":"",
             }
             status[name] = "offline"
             saveJson()
@@ -202,6 +202,24 @@ def sign_up():
         print("ERROR: " + str(E))
         return redirect("/")
 
+
+@app.route('/change-pfp', methods=['POST'])
+def change_pfp():
+    try:
+        name = request.cookies.get("name")
+        pw = request.cookies.get("pw")
+        if auth(name, pw):
+            pfp = request.files['pfp']
+            fileName, ext = os.path.splitext(pfp.filename)
+            if data[name]['pfp'][1:] != "static/images/default.jpg":
+                os.remove(data[name]['pfp'][1:])
+            pfp.save("static/pfps/" + name + ext)
+            data[name]['pfp'] = "/static/pfps/" + name + ext
+            saveJson()
+            return jsonify({'r':data[name]['pfp']})
+    except KeyError:
+        print("error")
+        return "False"
 
 @app.route('/login/<room>', methods=['POST'])
 def login(room):
@@ -432,7 +450,6 @@ def get_friends():
                 "status":status[friend],
                 "pfp":data[friend]['pfp'],
                 "isbd":data[friend]['birthday'].replace("-", "|", 1).split("|")[1] == str(datetime.datetime.now().strftime("%m-%d"))
-
                 }
         return jsonify({"res":res})
     return "False"
@@ -494,7 +511,7 @@ def generateRoomId():
 
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=8080 ,debug=True)
+    app.run(host='localhost', port=8000 ,debug=True)
     # app.run(host='0.0.0.0', port=8080 ,debug=True)
 
 #Made by Fepz (Kar1m, Kimo)

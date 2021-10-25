@@ -24,7 +24,18 @@ function addLocalVideo() {
         let trackElement = track.attach();
         trackElement.addEventListener('click', () => { zoomTrack(trackElement); });
         video.appendChild(trackElement);
-    });
+    }).catch((e) => {
+            alertify.alert("CAMERA AND MIC NEEDED","Are you an idiot? Of course you need allow the camera and mic for this to work!", () => { 
+                 function gotStream(stream) {
+                    window.location.reload()
+            }
+            function onfail(error) {
+                console.log("permission not granted or system don't have media devices."+error.name);
+            }
+            navigator.getUserMedia({audio:true,video:true}, gotStream,onfail);
+
+            })
+    })
 };
 
 function connectButtonHandler(event) {
@@ -41,7 +52,9 @@ function connectButtonHandler(event) {
             // button.disabled = false;
             shareScreen.disabled = false;
         }).catch(() => {
-            alert('Connection failed. Is the backend running?');
+
+          
+            // alert("sdfsdf")
             // button.innerHTML = 'Join call';
             // button.disabled = false;
         });
@@ -101,7 +114,7 @@ function connect(username, roomChosen) {
     },1000) 
             resolve();
         }).catch(e => {
-            console.log(e);
+           
             reject();
         });
     });

@@ -218,10 +218,11 @@ background-color: #ffffff85;
     padding: 23px;
     border-radius: 19px;
     width: fit-content;
-    min-height: 96%;
+    height: 96%;
     position: fixed;
     top: 10px;
     left: 10px;
+    overflow: scroll;
 }
 
 .user{

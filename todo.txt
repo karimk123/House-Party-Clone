@@ -1,10 +1,10 @@
 things to do {
 	make the site responsive on mobile
-	profile pictures
+	-> profile pictures
 	fix friend list bug where its not scrollable
 }
 
 
 doing right now {
-	tell the user to accept the mic and video when not accepted
+	-> tell the user to accept the mic and video when not accepted
 }

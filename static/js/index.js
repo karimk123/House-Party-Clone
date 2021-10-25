@@ -113,7 +113,7 @@ function acceptReq(name){
     let span = document.createElement("span")
     span.innerText = currUser
     let img = document.createElement("img")
-    img.src = "/static/images/default.jpg"
+    img.src = "/" + data['pfp']
     img.draggable = false
     img.className = "pfp"
     div.appendChild(img)
@@ -230,7 +230,7 @@ function search(text){
                 let span = document.createElement("span")
                 span.innerText = currUser
                 let img = document.createElement("img")
-                img.src = "/static/images/default.jpg"
+                img.src = "/" + data['pfp']
                 img.draggable = false
                 img.className = "pfp"
                 div.appendChild(img)
@@ -610,3 +610,15 @@ function ToggleVideo(event) {
    
 }
 
+function changePfp(f){
+    console.log("kaka")
+    var fd = new FormData()
+    fd.append("pfp", f)
+    fetch("/change-pfp", {
+        method:"POST",
+        body:fd
+    }).then((res) => {return res.json()}).then((data) => {
+        alertify.alert("Loading...")
+        document.getElementById("my-pfp").src = data['r'] + "?r=" + Math.random()*1000
+    })
+}
