@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="/static/index.css?r={{r}}">
         <script src="https://kit.fontawesome.com/383a3bf828.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <meta content="width=device-width, initial-scale=1" name="viewport" /> -->
 
         <!-- Alertify -->
         <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
@@ -85,7 +86,9 @@
                     <img title="Change profile picture" id="my-pfp" draggable="false" class="pfp" src="{{data[name]['pfp']}}">
                     <i  class="fas fa-camera"></i>
                     <!-- <i class="fas fa-circle"></i> -->
-                    <span>{{name}} (You)</span>
+                    <span style="margin-left:-40px">{{name}} (You)</span>
+                    <span id="logout-btn"  onclick="LogoutPrompt(event)"class="fas fa-sign-out-alt userBtns" style="margin:-109px"></span>
+
                 </div></label>
                 <input type="file" onchange="changePfp(this.files[0])" style="display:none;" id="pfp-input">
                 <div id='friends-div'>

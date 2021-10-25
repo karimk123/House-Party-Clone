@@ -1,5 +1,6 @@
 things to do {
-	make the site responsive on mobile
+	make the site responsive on mobile -done (kinda)
+	make the auth responsive by just removing the useles panel on the left with text
 }
 
 

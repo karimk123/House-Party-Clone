@@ -21,6 +21,7 @@ body {
 	animation: gradient 15s ease infinite;
     /* overflow: overlay; */
     overflow: hidden; /*? THIS COULD CAUSE SOME PROBLEMS, if it does just uncomment the line above*/
+    zoom: 108%;
 }
 
 ::-webkit-scrollbar {
@@ -130,10 +131,10 @@ button:focus {
     margin-right: -40px;
 }
 .participant div video:not(.trackZoomed) {
-    /* width: 240px;
-    height: 180px; */
-    width: 70%;
-    height: 100%;
+    width: 240px;
+    height: 180px;
+    /* width: 70%;
+    height: 100%; */
     border-radius: 16px;
     transition: 0.3s;
     cursor: pointer;
@@ -450,9 +451,9 @@ background-color: #ffffff85;
 
 
 #pfp-input-label .fa-camera {
-        position: absolute;
-    top: 123.6px;
-    left: 50px;
+          position: relative;
+    top: -13.400000000000006px;
+    left: -46px;
     font-size: 25px;
     color: #404040;
     text-shadow: 0 0 5px #00000061;
@@ -467,3 +468,21 @@ background-color: #ffffff85;
 #friends-list::-webkit-scrollbar{
     width: 7px;
 }
+
+
+.sr-only {
+    display: none;
+}
+
+
+/* @media screen and (max-width: 1000px){
+    body {
+        zoom: 76%;
+    }
+
+}
+@media screen and (max-width: 880px){
+    #friends-list {
+        display: none;    
+    }
+} */
